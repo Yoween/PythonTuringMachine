@@ -1,0 +1,26 @@
+en:
+  main_title: Python Turing Machine
+  file: File
+  open: Open...
+  exit: Exit
+  templates: Templates
+  generate: Generate Template
+  load: Load Templates
+  invert_value: Invert 1s and 0s
+  add_one: Add 1 in binary
+  remove_one: Remove 1 in binary
+  language: Language
+  help: Help
+  state: State
+  read: Read
+  write: Write
+  move: Move
+  new_state: New State
+  start: Start
+  left: Left
+  right: Right
+  clear: Clear
+  slow: Slow
+  restart_required: A restart is required. Do you want to restart now?
+  indeed: Okay
+  please_no: Cancel

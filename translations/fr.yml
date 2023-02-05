@@ -1,0 +1,26 @@
+fr:
+  main_title: Machine de Turing en Python
+  file: Fichier
+  open: Ouvrir...
+  exit: Quitter
+  templates: Modèles
+  generate: Générer un modèle
+  load: Charger un modèles
+  invert_value: Inverser les 1 et les 0
+  add_one: Ajouter 1 en binaire
+  remove_one: Supprimer 1 en binaire
+  language: Langue
+  help: Aide
+  state: État
+  read: Lecture
+  write: Écriture
+  move: Direction
+  new_state: Nouvel État
+  start: Départ
+  left: Gauche
+  right: Droite
+  clear: Effacer
+  slow: Lent
+  restart_required: Une redémarrage est nécessaire. Voulez-vous redémarrer maintenant ?
+  indeed: Oui
+  please_no: Non
