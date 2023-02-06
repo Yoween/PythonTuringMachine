@@ -10,12 +10,8 @@ from Tape import Tape
 from execute_code import import_code, execute_code, move, write, clear_tape
 from generate_template import generate_template, help
 from scrollable_frame import scroll_bar
+from languages import initialisation, change_language
 
-i18n.load_path.append(os.path.abspath(__file__) + "\\..\\translations")
-i18n.set('filename_format', '{locale}.{format}')
-with open('config.json', 'r') as f:
-    config = json.load(f)
-i18n.set("locale", config["language"])
 
 class UI_Window():
     """This is the class where everything in the program takes place.
@@ -23,6 +19,9 @@ class UI_Window():
     def __init__(self):
         """This is the main window; it displays every element of the user interface when the program starts.
         """
+        initialisation(self)
+        
+        
         self.width = 720
         self.height = 480
         self.root = tk.Tk()
@@ -35,7 +34,7 @@ class UI_Window():
         self.instructions = {}
         self.execution = ()
         self.tape_memory = Tape()
-        self.default_path = os.path.abspath(__file__) + "/../.default_templates"
+        self.default_path = os.path.abspath(__file__) + "/../default_templates"
 
         self.menu = tk.Menu(self.root)    
         self.menu_file = tk.Menu(tearoff=0)
@@ -53,9 +52,9 @@ class UI_Window():
         self.menu_load_template.add_command(label=i18n.t("remove_one"), command= lambda: import_code(self, f"{self.default_path}/remove_one_binary.ptm"))
         
         self.menu_languages = tk.Menu(tearoff=0)
-        self.menu.add_cascade(label="Languages", menu=self.menu_languages)
-        self.menu_languages.add_command(label="English", command=lambda: self.change_language("en"))
-        self.menu_languages.add_command(label="Français", command=lambda: self.change_language("fr"))
+        self.menu.add_cascade(label=i18n.t("language"), menu=self.menu_languages)
+        self.menu_languages.add_command(label="English", command=lambda: change_language(self, "en"))
+        self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
         
         self.menu.add_command(label=i18n.t("help"), command= lambda: help(self))
 
@@ -146,18 +145,6 @@ class UI_Window():
         print(self.canvas2['height'])
         print(self.canvas2['width'])
         
-    def change_language(self, language):
-        with open('config.json', 'w') as f:
-            config["language"] = language
-            json.dump(config, f)
-        self.restart_window = tk.Toplevel(self.root)
-        self.restart_window.attributes('-topmost', 'true')
-        self.restart_window.geometry('%dx%d+%d+%d' % (400, 80, int(self.root.winfo_screenwidth()/2 - 400/2),
-                                        int(self.root.winfo_screenheight()/2 - 80/2)))
-        tk.Label(self.restart_window, text=i18n.t("restart_required")).pack()
-        tk.Button(self.restart_window, text=i18n.t("indeed"), command= lambda: os.execv(sys.executable, ['python'] + sys.argv)).pack()
-        tk.Button(self.restart_window, text=i18n.t("please_no"), command= self.restart_window.destroy).pack()
-    
         
     def creation(self):
         """This function is invoked when loading a file to clear the previous instructions and display the new ones.

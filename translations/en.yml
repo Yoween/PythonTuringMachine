@@ -4,7 +4,7 @@ en:
   open: Open...
   exit: Exit
   templates: Templates
-  generate: Generate Template
+  generate: Generate a Template
   load: Load Templates
   invert_value: Invert 1s and 0s
   add_one: Add 1 in binary
@@ -24,3 +24,10 @@ en:
   restart_required: A restart is required. Do you want to restart now?
   indeed: Okay
   please_no: Cancel
+
+  help_1: Welcome to the help menu
+  help_2: To use this, you first need to understand how a Turing machine works.
+  help_3: How it works?
+  help_4: "Now that you have a basic understanding, let us introduce you to programming.\nIt's actually not difficult to understand, as there are only five different instructions:\nthe current state, the value you read, the value you write, the direction you move, and the next state.\nTo get started, you can generate a template by clicking on the 'Templates' menu, then 'Generate', and specifying the size (the number of states you want, for example, 3 states [b, 0, 1] = 3)."
+  help_5: "As you can see, the window is divided into two parts. The left part is only for previewing your program and cannot be interacted with.\nHowever, the right side is different and allows you to interact with it by clicking on buttons."
+  help_6:

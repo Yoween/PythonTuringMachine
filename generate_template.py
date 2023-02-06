@@ -7,6 +7,7 @@
 from tkinter import filedialog
 import tkinter as tk
 import webbrowser
+import i18n
 
 def generate_template(self):
     """Creates a window with some text and buttons then calls "template_creator"
@@ -33,6 +34,8 @@ def template_creator(size: int, choice:int):
         file = open(filedialog.askopenfilename(filetypes=[('Python Turing Machine (.ptm)', '*.ptm')]), "w")
     else:
         file = open(filedialog.asksaveasfilename(filetypes=[('Python Turing Machine (.ptm)', '*.ptm')]), "w")
+    if file == "":
+        return
     for i in range(1, int(size)+1):
         for j in range(3):
             file.write(f"{i} : {steps[j]} : - : - : {i}\n")
@@ -43,16 +46,16 @@ def help(self):
     """
     self.help_window = tk.Toplevel(self.root)
     self.help_window.title("Help menu")
-    text1 = tk.Label(self.help_window, text= "Welcome to the help menu")
+    text1 = tk.Label(self.help_window, text=i18n.t("help_1"))
     text1.pack()
     text1.config(font=('Helvetica bold', 18))
-    text2 = tk.Label(self.help_window, text= "To use this, you need to understand how a Turing machine works in the first place")
+    text2 = tk.Label(self.help_window, text=i18n.t("help_2"))
     text2.pack()
     text2.config(font=('Helvetica bold', 18))
-    tk.Button(self.help_window, text= "How it works?", command= lambda: webbrowser.open("https://www.futurelearn.com/info/courses/how-computers-work/0/steps/49259")).pack()
-    text3 = tk.Label(self.help_window, text= "Now that you have the basis, let us introduce you... Programming!\nWell not really since we made it really easy to understand, there are 5 different instructions:\nThe current state, the value you read, the value you write, the direction you move, the next state.\nTo start, you can generate a template, by clicking on the 'Templates' menu, then 'Generate' and provide a size (the amound of states you want, ex: 3 states(b, 0, 1) = 3).")
+    tk.Button(self.help_window, text=i18n.t("help_3"), command=lambda: webbrowser.open("https://www.futurelearn.com/info/courses/how-computers-work/0/steps/49259")).pack()
+    text3 = tk.Label(self.help_window, text=i18n.t("help_4"))
     text3.pack()
     text3.config(font=('Helvetica bold', 12))
-    text4 = tk.Label(self.help_window, text= "As you can see, the window is divided in two parts; you can't interract with the left one, it is only here as a preview to your program.\nHowever the right side is different since you can click buttons inside of it. We made the interface pretty simple too, ")
+    text4 = tk.Label(self.help_window, text=i18n.t("help_5"))
     text4.pack()
     text4.config(font=('Helvetica bold', 12))
