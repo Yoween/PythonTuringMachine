@@ -5,12 +5,13 @@
 #==================================
 
 import tkinter as tk
-import os, sys, i18n, json
+import os, i18n
 from Tape import Tape
 from execute_code import import_code, execute_code, move, write, clear_tape
 from generate_template import generate_template, help
 from scrollable_frame import scroll_bar
 from languages import initialisation, change_language
+
 
 
 class UI_Window():
@@ -225,5 +226,3 @@ class UI_Window():
 if __name__ ==  '__main__' :
     a = UI_Window()
     a.root.mainloop()
-
-a = 0

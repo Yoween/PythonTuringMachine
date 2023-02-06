@@ -4,6 +4,7 @@ import tkinter as tk
 def initialisation(self):
     self.config_file = os.path.dirname(os.path.abspath(__file__)) + "\\config.json"
     if not os.path.exists(self.config_file):
+        print(os.path.exists(self.config_file))
         with open(self.config_file, 'w') as fp:
             fp.write('{"language":"en"}')
     print(self.config_file)
