@@ -64,9 +64,9 @@ class UI_Window():
         self.root.config(menu=self.menu)        
 
 
-        self.preview_tab()
-        
         self.execution_tab()
+        self.preview_tab()
+
 
         
 

@@ -7,7 +7,7 @@
 import tkinter as tk
 
 def scroll_bar(self, container, width) :
-    self.canvas = tk.Canvas(container, width=int(width/10))
+    self.canvas = tk.Canvas(container, width=int(width/9))
     self.scrollbar = tk.Scrollbar(container, orient="vertical", command=self.canvas.yview)
     self.scrollable_frame = tk.Frame(self.canvas, bg='yellow')
 
