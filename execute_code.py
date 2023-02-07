@@ -37,7 +37,7 @@ def import_code(self, file=""):
     for i in self.instructions.keys():
         self.new_state(self.instructions[i])
 
-def execute_code(self, instructions: dict, delay):
+def execute_code(self, selfe, instructions: dict, delay):
     """Starts the programs with the properly formatted file. Called by 'import_code'.
 
     Args:
@@ -45,7 +45,7 @@ def execute_code(self, instructions: dict, delay):
     """
     if instructions == {}:
         return
-    self.execution.start(instructions, self.tape_memory, delay)
+    self.execution.start(selfe, instructions, self.tape_memory, delay)
 
 def move(self, direction: str):
     """Moves left or right on the 'tape' (tape_memory.tape) based on the parameter.

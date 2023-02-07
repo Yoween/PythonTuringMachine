@@ -69,7 +69,7 @@ class ExecuteInstructions():
                 return False
 
 
-    def start(self, instructions:dict, tape_memory = Tape(), delay = 0):
+    def start(self, selfe, instructions:dict, tape_memory = Tape(), delay = 0):
         """Executes the program when called. Used instead of '__init__' so we can decide when to start it. The core of the program, which executes instructions as a Turing machine would do.
 
         Args:
@@ -101,3 +101,14 @@ class ExecuteInstructions():
                     iterations -= 1
             sleep(delay)
             print(tape_memory.tape)
+            for key in selfe.circles.keys() :
+                if tape_memory.read(tape_index - int(key)) == 'b':
+                    selfe.circles[key] = 'white'
+                if tape_memory.read(tape_index - int(key)) == '0':
+                    selfe.circles[key] = 'blue'
+                if tape_memory.read(tape_index - int(key)) == '1':
+                    selfe.circles[key] = 'grey'
+            selfe.canvas2.destroy()
+            selfe.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
+            for value in selfe.circles.values() :
+                selfe.drawcircle(selfe.canvas2, value[0], value[1], 6, value[2])
