@@ -64,7 +64,7 @@ class UI_Window():
         self.root.config(menu=self.menu)        
 
 
-        self.creation()
+        self.preview_tab()
         
         self.execution_tab()
 
@@ -129,7 +129,7 @@ class UI_Window():
         self.right_tab.pack(side='right', expand=True, fill='both')
         
         
-    def creation(self):
+    def preview_tab(self):
         """This function is invoked when loading a file to clear the previous instructions and display the new ones.
         """
         try:

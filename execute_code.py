@@ -23,7 +23,7 @@ def import_code(self, file=""):
     if open_file == "":
         return
     
-    self.creation()
+    self.preview_tab()
     self.instructions.clear()
     self.execution = ExecuteInstructions()
     self.instructions = self.execution.process(open_file)
