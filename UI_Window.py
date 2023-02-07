@@ -5,7 +5,7 @@
 #==================================
 
 import tkinter as tk
-import os, i18n
+import os, i18n, webbrowser
 from Tape import Tape
 from execute_code import import_code, execute_code, move, write, clear_tape
 from generate_template import generate_template, help
@@ -58,31 +58,14 @@ class UI_Window():
         self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
         
         self.menu.add_command(label=i18n.t("help"), command= lambda: help(self))
+        
+        self.menu.add_command(label="Github", command= lambda: webbrowser.open("https://github.com/Yoween/PythonTuringMachine"))
 
         self.root.config(menu=self.menu)        
 
 
         # Left part
-
-        self.code_tab = tk.Frame(self.root)
-
-        scroll_bar(self, self.code_tab, self.root.winfo_screenwidth(), self.root.winfo_screenheight())
-
-        text_name = ("state", "read", "write", "move", "new_state")
-
-        for i in range(5) :
-
-            self.__dict__[f"label_{text_name[i]}"] = tk.Label(self.scrollable_frame, text=f"{i18n.t(text_name[i])}", relief=tk.RIDGE)
-            self.__dict__[f"label_{text_name[i]}"].grid(row=0, column=i, sticky='nesw')
-
-
-
-        self.code_tab.pack(side='left', expand=True, fill='both')
-        self.canvas.pack(side="left", fill="both", expand=True, ipadx=60)
-        self.scrollbar.pack(side="right", fill="y")
-        for i in range(5) :
-            self.scrollable_frame.columnconfigure(i, weight=1)
-
+        self.creation()
         
 
         # Right part
@@ -150,11 +133,13 @@ class UI_Window():
     def creation(self):
         """This function is invoked when loading a file to clear the previous instructions and display the new ones.
         """
-        self.code_tab.destroy()
+        try:
+            self.code_tab.destroy()
+        except:
+            pass
         self.code_tab = tk.Frame(self.root)
 
-        scroll_bar(self, self.code_tab, self.root.winfo_screenwidth(), self.root.winfo_screenheight())
-
+        scroll_bar(self, self.code_tab, self.root.winfo_screenwidth())
         text_name = ("state", "read", "write", "move", "new_state")
 
         for i in range(5) :
@@ -215,7 +200,7 @@ class UI_Window():
                     self.__dict__[f"label_move{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text= f"{instructions[key[i]][1]}")
                     self.__dict__[f"label_move{x}_{key[i]}"].grid(row=3*x-2+i, column= 3, sticky='nesw')
 
-                    self.__dict__[f"label_new_state{x}_{key[i]}"] = tk.Label(self.scrollable_frame, relief=tk.RIDGE ,text=f'{instructions[key[i]][2]}')
+                    self.__dict__[f"label_new_state{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text=f'{instructions[key[i]][2]}')
                     self.__dict__[f"label_new_state{x}_{key[i]}"].grid(row=3*x-2+i, column=4, sticky='nesw')
                 amount -= 1
             x += 1
