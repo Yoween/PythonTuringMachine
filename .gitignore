@@ -1,5 +1,6 @@
-toexe_config.json
-toexe.bat
+
+config.json
+.gitignore
 .vscode/
 .pytest_cache/
-__pycache__
+__pycache__/
