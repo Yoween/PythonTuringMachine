@@ -64,34 +64,54 @@ class UI_Window():
         self.root.config(menu=self.menu)        
 
 
-        # Left part
         self.creation()
         
+        self.execution_tab()
 
-        # Right part
+        
 
-        self.turing_tab = tk.Frame(self.root, bg='AntiqueWhite2')
+        self.circles = {'-14': [40, 20, 'white'], '-13': [42, 40, 'white'], '-12': [45, 60, 'white'], '-11': [49, 80, 'white'], '-10': [54, 100, 'white'],
+                '-9': [60, 120, 'white'], '-8': [68, 140, 'white'], '-7': [78, 160, 'white'], '-6': [90, 180, 'white'], '-5': [104, 200, 'white'],
+                '-4': [120, 220, 'white'], '-3': [138, 240, 'white'], '-2': [158, 260, 'white'], '-1': [180, 270, 'white'], '0': [204, 275, 'white'],
+                '1': [228, 270, 'white'], '2': [250, 260, 'white'], '3': [270, 240, 'white'], '4':[288, 220, 'white'], '5': [304, 200, 'white'],
+                '6': [318, 180, 'white'], '7': [330, 160, 'white'], '8': [340, 140, 'white'], '9': [348, 120, 'white'], '10': [354, 100, 'white'],
+                '11': [359, 80, 'white'], '12': [363, 60, 'white'], '13': [366, 40, 'white'], '14': [368, 20, 'white']}
 
-        self.canvas2 = tk.Canvas(self.turing_tab, height=310,  bg='AntiqueWhite2')
+
+        for value in self.circles.values() :
+            self.drawcircle(self.canvas2, value[0], value[1], 6, value[2])
+        
+
+        self.right_tab.pack(side='right', expand=True, fill='both')
+        
+        
+    def execution_tab(self):
+        try:
+            self.right_tab.destroy()
+        except:
+            pass
+        self.right_tab = tk.Frame(self.root, bg='AntiqueWhite2')
+
+        self.canvas2 = tk.Canvas(self.right_tab, height=310,  bg='AntiqueWhite2')
         self.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
 
-        self.button_go = tk.Button(self.turing_tab, text=i18n.t("start"), command= lambda: execute_code(self, self.instructions, slow_execution_var.get()))
+        self.button_go = tk.Button(self.right_tab, text=i18n.t("start"), command= lambda: execute_code(self, self.instructions, slow_execution_var.get()))
         self.button_go.grid(row=10, column=1, sticky='nesw')
-        self.button_left = tk.Button(self.turing_tab, text=i18n.t("left"), command= lambda: move(self, "<"))
+        self.button_left = tk.Button(self.right_tab, text=i18n.t("left"), command= lambda: move(self, "<"))
         self.button_left.grid(row=10, column=2, sticky='nesw')
-        self.button_right = tk.Button(self.turing_tab, text=i18n.t("right"), command= lambda: move(self, ">"))
+        self.button_right = tk.Button(self.right_tab, text=i18n.t("right"), command= lambda: move(self, ">"))
         self.button_right.grid(row=10, column=3, sticky='nesw')
-        self.button_clear = tk.Button(self.turing_tab, text=i18n.t("clear"), command= lambda: clear_tape(self))
+        self.button_clear = tk.Button(self.right_tab, text=i18n.t("clear"), command= lambda: clear_tape(self))
         self.button_clear.grid(row=10, column=4, sticky='nesw')
         
         slow_execution_var = tk.IntVar()
-        self.button_slow = tk.Checkbutton(self.turing_tab, text=i18n.t("slow"), variable= slow_execution_var, offvalue= 0, onvalue= 1)
+        self.button_slow = tk.Checkbutton(self.right_tab, text=i18n.t("slow"), variable= slow_execution_var, offvalue= 0, onvalue= 1)
         self.button_slow.grid(row=11, column=1, sticky='nesw')
-        self.button_b = tk.Button(self.turing_tab, text="b", command= lambda: write(self, "b"))
+        self.button_b = tk.Button(self.right_tab, text="b", command= lambda: write(self, "b"))
         self.button_b.grid(row=11, column=2, sticky='nesw')
-        self.button_0 = tk.Button(self.turing_tab, text="0", command= lambda: write(self, "0"))
+        self.button_0 = tk.Button(self.right_tab, text="0", command= lambda: write(self, "0"))
         self.button_0.grid(row=11, column=3, sticky='nesw')
-        self.button_1 = tk.Button(self.turing_tab, text="1", command= lambda: write(self, "1"))
+        self.button_1 = tk.Button(self.right_tab, text="1", command= lambda: write(self, "1"))
         self.button_1.grid(row=11, column=4, sticky='nesw')
 
         self.circles = {'-14': [40, 20, 'white'], '-13': [42, 40, 'white'], '-12': [45, 60, 'white'], '-11': [49, 80, 'white'], '-10': [54, 100, 'white'],
@@ -106,58 +126,19 @@ class UI_Window():
             self.drawcircle(self.canvas2, value[0], value[1], 6, value[2])
         
 
-        self.turing_tab.pack(side='right', expand=True, fill='both')
+        self.right_tab.pack(side='right', expand=True, fill='both')
         
         
-    def turing(self):
-        self.turing_tab.destroy()
-        self.turing_tab = tk.Frame(self.root, bg='AntiqueWhite2')
-
-        self.canvas2 = tk.Canvas(self.turing_tab, height=310,  bg='AntiqueWhite2')
-        self.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
-
-        self.button_go = tk.Button(self.turing_tab, text=i18n.t("start"), command= lambda: execute_code(self, self.instructions, slow_execution_var.get()))
-        self.button_go.grid(row=10, column=1, sticky='nesw')
-        self.button_left = tk.Button(self.turing_tab, text=i18n.t("left"), command= lambda: move(self, "<"))
-        self.button_left.grid(row=10, column=2, sticky='nesw')
-        self.button_right = tk.Button(self.turing_tab, text=i18n.t("right"), command= lambda: move(self, ">"))
-        self.button_right.grid(row=10, column=3, sticky='nesw')
-        self.button_clear = tk.Button(self.turing_tab, text=i18n.t("clear"), command= lambda: clear_tape(self))
-        self.button_clear.grid(row=10, column=4, sticky='nesw')
-        
-        slow_execution_var = tk.IntVar()
-        self.button_slow = tk.Checkbutton(self.turing_tab, text=i18n.t("slow"), variable= slow_execution_var, offvalue= 0, onvalue= 1)
-        self.button_slow.grid(row=11, column=1, sticky='nesw')
-        self.button_b = tk.Button(self.turing_tab, text="b", command= lambda: write(self, "b"))
-        self.button_b.grid(row=11, column=2, sticky='nesw')
-        self.button_0 = tk.Button(self.turing_tab, text="0", command= lambda: write(self, "0"))
-        self.button_0.grid(row=11, column=3, sticky='nesw')
-        self.button_1 = tk.Button(self.turing_tab, text="1", command= lambda: write(self, "1"))
-        self.button_1.grid(row=11, column=4, sticky='nesw')
-
-        self.circles = {'-14': [40, 20, 'white'], '-13': [42, 40, 'white'], '-12': [45, 60, 'white'], '-11': [49, 80, 'white'], '-10': [54, 100, 'white'],
-                '-9': [60, 120, 'white'], '-8': [68, 140, 'white'], '-7': [78, 160, 'white'], '-6': [90, 180, 'white'], '-5': [104, 200, 'white'],
-                '-4': [120, 220, 'white'], '-3': [138, 240, 'white'], '-2': [158, 260, 'white'], '-1': [180, 270, 'white'], '0': [204, 275, 'white'],
-                '1': [228, 270, 'white'], '2': [250, 260, 'white'], '3': [270, 240, 'white'], '4':[288, 220, 'white'], '5': [304, 200, 'white'],
-                '6': [318, 180, 'white'], '7': [330, 160, 'white'], '8': [340, 140, 'white'], '9': [348, 120, 'white'], '10': [354, 100, 'white'],
-                '11': [359, 80, 'white'], '12': [363, 60, 'white'], '13': [366, 40, 'white'], '14': [368, 20, 'white']}
-
-
-        for value in self.circles.values() :
-            self.drawcircle(self.canvas2, value[0], value[1], 6, value[2])
-        
-
-        self.turing_tab.pack(side='right', expand=True, fill='both')
     def creation(self):
         """This function is invoked when loading a file to clear the previous instructions and display the new ones.
         """
         try:
-            self.code_tab.destroy()
+            self.left_tab.destroy()
         except:
             pass
-        self.code_tab = tk.Frame(self.root)
+        self.left_tab = tk.Frame(self.root)
 
-        scroll_bar(self, self.code_tab, self.root.winfo_screenwidth())
+        scroll_bar(self, self.left_tab, self.root.winfo_screenwidth())
         text_name = ("state", "read", "write", "move", "new_state")
 
         for i in range(5) :
@@ -165,7 +146,7 @@ class UI_Window():
             self.__dict__[f"label_{text_name[i]}"] = tk.Label(self.scrollable_frame, text=f"{i18n.t(text_name[i])}", relief=tk.RIDGE)
             self.__dict__[f"label_{text_name[i]}"].grid(row=0, column=i, sticky='nesw')
 
-        self.code_tab.pack(side='left', expand=True, fill='both')
+        self.left_tab.pack(side='left', expand=True, fill='both')
         self.canvas.pack(side="left", fill="both", expand=True)
         self.scrollbar.pack(side="right", fill="y")
         for i in range(5) :
@@ -193,7 +174,7 @@ class UI_Window():
             x += 1
 
         self.scrollable_frame.update()
-        self.turing()
+
 
     def new_state(self, instructions: dict):
         """Displays new instructions after previous ones got cleared
