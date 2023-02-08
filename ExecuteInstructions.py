@@ -102,7 +102,7 @@ class ExecuteInstructions():
                 if previous_state != self.current_state:
                     iterations -= 1
             sleep(delay)
-            print(tape_memory.tape)
+            print(tape_index, tape_memory.tape)
             for key in ui.circles.keys() :
                 if tape_memory.read(tape_index - int(key)) == 'b':
                     ui.circles[key][2] = 'white'
@@ -113,6 +113,5 @@ class ExecuteInstructions():
             ui.canvas2.destroy()
             ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
             ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
-            print(tape_memory.tape)
             for value in ui.circles.values() :
                 ui.drawcircle(ui.canvas2, value[0], value[1], 6, value[2])
