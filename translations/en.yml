@@ -27,6 +27,9 @@ en:
   quit: Quit
 
   template_text: "Please enter the number of states you want:"
+  from_file: Open a file to write in it
+  to_file: Save as a new file
+
 
   help_1: Welcome to the help menu
   help_2: To use this, you first need to understand how a Turing machine works.

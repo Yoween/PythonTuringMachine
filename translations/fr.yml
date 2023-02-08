@@ -27,6 +27,8 @@ fr:
   quit: Quitter
 
   template_text: "Veuillez entrer le nombre d'états souhaités : "
+  from_file: Ouvrir un fichier pour écrire
+  to_file: Sauvegarder dans un nouveau fichier
 
   help_1: Bienvenue dans le menu d'aide
   help_2: Pour utiliser ce programme, vous devez d'abord comprendre comment fonctionne une machine de Turing.

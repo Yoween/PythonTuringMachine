@@ -18,8 +18,8 @@ def generate_template(self):
     entry = tk.Entry(self.generation_window)
     entry.pack()
     choice = tk.IntVar()
-    tk.Radiobutton(self.generation_window, variable= choice, value= 0).pack()
-    tk.Radiobutton(self.generation_window, variable= choice, value= 1).pack()
+    tk.Radiobutton(self.generation_window, text=i18n.t("from_file"), variable= choice, value= 0).pack()
+    tk.Radiobutton(self.generation_window, text=i18n.t("to_file"), variable= choice, value= 1).pack()
     tk.Button(self.generation_window, text= "Go!", command= lambda: [template_creator(entry.get(), choice.get())]).pack()
     tk.Button(self.generation_window, text= i18n.t("quit"), command= self.generation_window.destroy).pack()
 def template_creator(size: int, choice:int):
@@ -30,11 +30,12 @@ def template_creator(size: int, choice:int):
         choice (int): 0 to open an existing file | 1 to save as a new file
     """
     steps = ("b", "0", "1")
-    if choice == 0:
-        file = open(filedialog.askopenfilename(filetypes=[('Python Turing Machine (.ptm)', '*.ptm')]), "w")
-    else:
-        file = open(filedialog.asksaveasfilename(filetypes=[('Python Turing Machine (.ptm)', '*.ptm')]), "w")
-    if file == "":
+    try: 
+        if choice == 0:
+            file = open(filedialog.askopenfilename(filetypes=[('Python Turing Machine (.ptm)', '*.ptm')]), "w")
+        else:
+            file = open(filedialog.asksaveasfilename(filetypes=[('Python Turing Machine (.ptm)', '*.ptm')]), "w")
+    except:
         return
     for i in range(1, int(size)+1):
         for j in range(3):
