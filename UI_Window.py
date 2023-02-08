@@ -114,7 +114,8 @@ class UI_Window():
         self.next_value.grid(row=11, column=6)
 
         self.right_tab.pack(side='right', expand=True, fill='both')
-        
+        for i in range(5) :
+            self.right_tab.columnconfigure(i, weight=1)
         
     def preview_tab(self):
         """This function is invoked when loading a file to clear the previous instructions and display the new ones.
