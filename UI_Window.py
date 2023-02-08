@@ -35,6 +35,12 @@ class UI_Window():
         self.root.bind("<Control-o>", lambda y: import_code(self))
         self.instructions = {}
         self.execution = ()
+        self.circles = {'-14': [40, 20, 'white'], '-13': [42, 40, 'white'], '-12': [45, 60, 'white'], '-11': [49, 80, 'white'], '-10': [54, 100, 'white'],
+                        '-9': [60, 120, 'white'], '-8': [68, 140, 'white'], '-7': [78, 160, 'white'], '-6': [90, 180, 'white'], '-5': [104, 200, 'white'],
+                        '-4': [120, 220, 'white'], '-3': [138, 240, 'white'], '-2': [158, 260, 'white'], '-1': [180, 270, 'white'], '0': [204, 275, 'white'],
+                        '1': [228, 270, 'white'], '2': [250, 260, 'white'], '3': [270, 240, 'white'], '4':[288, 220, 'white'], '5': [304, 200, 'white'],
+                        '6': [318, 180, 'white'], '7': [330, 160, 'white'], '8': [340, 140, 'white'], '9': [348, 120, 'white'], '10': [354, 100, 'white'],
+                        '11': [359, 80, 'white'], '12': [363, 60, 'white'], '13': [366, 40, 'white'], '14': [368, 20, 'white']}
         self.tape_memory = Tape()
         self.default_path = os.path.abspath(__file__) + "/../default_templates"
 
@@ -82,20 +88,14 @@ class UI_Window():
 
         self.canvas2 = tk.Canvas(self.right_tab, height=310,  bg='AntiqueWhite2')
         self.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
-        self.circles = {'-14': [40, 20, 'white'], '-13': [42, 40, 'white'], '-12': [45, 60, 'white'], '-11': [49, 80, 'white'], '-10': [54, 100, 'white'],
-                '-9': [60, 120, 'white'], '-8': [68, 140, 'white'], '-7': [78, 160, 'white'], '-6': [90, 180, 'white'], '-5': [104, 200, 'white'],
-                '-4': [120, 220, 'white'], '-3': [138, 240, 'white'], '-2': [158, 260, 'white'], '-1': [180, 270, 'white'], '0': [204, 275, 'white'],
-                '1': [228, 270, 'white'], '2': [250, 260, 'white'], '3': [270, 240, 'white'], '4':[288, 220, 'white'], '5': [304, 200, 'white'],
-                '6': [318, 180, 'white'], '7': [330, 160, 'white'], '8': [340, 140, 'white'], '9': [348, 120, 'white'], '10': [354, 100, 'white'],
-                '11': [359, 80, 'white'], '12': [363, 60, 'white'], '13': [366, 40, 'white'], '14': [368, 20, 'white']}
         for value in self.circles.values() :
             self.drawcircle(self.canvas2, value[0], value[1], 6, value[2])
 
-        self.button_go = tk.Button(self.right_tab, text=i18n.t("start"), command= lambda: execute_code(self, self,self.instructions, slow_execution_var.get()))
+        self.button_go = tk.Button(self.right_tab, text=i18n.t("start"), command= lambda: execute_code(self, self, self.instructions, slow_execution_var.get()))
         self.button_go.grid(row=10, column=1, sticky='nesw')
-        self.button_left = tk.Button(self.right_tab, text=i18n.t("left"), command= lambda: move(self, "<"))
+        self.button_left = tk.Button(self.right_tab, text=i18n.t("left"), command= lambda: move(self, self, "<"))
         self.button_left.grid(row=10, column=2, sticky='nesw')
-        self.button_right = tk.Button(self.right_tab, text=i18n.t("right"), command= lambda: move(self, ">"))
+        self.button_right = tk.Button(self.right_tab, text=i18n.t("right"), command= lambda: move(self, self, ">"))
         self.button_right.grid(row=10, column=3, sticky='nesw')
         self.button_clear = tk.Button(self.right_tab, text=i18n.t("clear"), command= lambda: clear_tape(self))
         self.button_clear.grid(row=10, column=4, sticky='nesw')
@@ -103,11 +103,11 @@ class UI_Window():
         slow_execution_var = tk.IntVar()
         self.button_slow = tk.Checkbutton(self.right_tab, text=i18n.t("slow"), variable= slow_execution_var, offvalue= 0, onvalue= 1)
         self.button_slow.grid(row=11, column=1, sticky='nesw')
-        self.button_b = tk.Button(self.right_tab, text="b", command= lambda: write(self, "b"))
+        self.button_b = tk.Button(self.right_tab, text="b", command= lambda: write(self, self, "b"))
         self.button_b.grid(row=11, column=2, sticky='nesw')
-        self.button_0 = tk.Button(self.right_tab, text="0", command= lambda: write(self, "0"))
+        self.button_0 = tk.Button(self.right_tab, text="0", command= lambda: write(self, self, "0"))
         self.button_0.grid(row=11, column=3, sticky='nesw')
-        self.button_1 = tk.Button(self.right_tab, text="1", command= lambda: write(self, "1"))
+        self.button_1 = tk.Button(self.right_tab, text="1", command= lambda: write(self, self, "1"))
         self.button_1.grid(row=11, column=4, sticky='nesw')        
 
         self.right_tab.pack(side='right', expand=True, fill='both')

@@ -48,7 +48,7 @@ def execute_code(self, ui, instructions: dict, delay):
         return
     self.execution.start(ui, instructions, self.tape_memory, delay)
 
-def move(self, direction: str):
+def move(self, ui, direction: str):
     """Moves left or right on the 'tape' (tape_memory.tape) based on the parameter.
 
     Args:
@@ -56,9 +56,9 @@ def move(self, direction: str):
     """
     if self.execution == ():
         return
-    self.tape_memory.move(direction)
+    self.tape_memory.move(ui, direction)
 
-def write(self, value: str):
+def write(self, ui, value: str):
     """Writes a value on the 'tape' (tape_memory.tape) based on the parameter.
 
     Args:
@@ -66,7 +66,7 @@ def write(self, value: str):
     """
     if self.execution == ():
         return
-    self.tape_memory.write(self.tape_memory.get_position(), value)
+    self.tape_memory.write(ui, self.tape_memory.get_position(), value)
     print(self.tape_memory.tape)
 
 def clear_tape(self):

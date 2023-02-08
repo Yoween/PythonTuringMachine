@@ -87,12 +87,12 @@ class ExecuteInstructions():
                 
             sub_insruction = instructions[self.current_state][tape_index_value]
             if sub_insruction[0] == "-":
-                tape_memory.write(tape_index, tape_index_value)
+                tape_memory.write(ui, tape_index, tape_index_value)
             else :
-                tape_memory.write(tape_index, sub_insruction[0])
+                tape_memory.write(ui, tape_index, sub_insruction[0])
                 
             if sub_insruction[1] != "-":
-                tape_memory.move(sub_insruction[1])
+                tape_memory.move(ui, sub_insruction[1])
                 
             if sub_insruction[2] == "f":
                 iterations = 0
