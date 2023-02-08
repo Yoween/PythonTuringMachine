@@ -14,9 +14,9 @@ class Tape() :
         return nothing, just create the list {self.tape}, the {self.origin} who is the index 0 of {self.tape}
                         and {self.position} the current position in the tape
         '''
-        self.tape = ["b"] * 29
-        self.origin = 14
-        self.position = 14
+        self.tape = ["b"] * 51
+        self.origin = 25
+        self.position = 25
 
         
     def read(self, index: int) :
