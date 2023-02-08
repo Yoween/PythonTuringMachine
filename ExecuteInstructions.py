@@ -102,4 +102,3 @@ class ExecuteInstructions():
                 if previous_state != self.current_state:
                     iterations -= 1
             sleep(delay)
-            print(tape_memory.tape)
