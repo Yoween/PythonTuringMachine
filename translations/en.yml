@@ -26,6 +26,9 @@ en:
   please_no: Cancel
   quit: Quit
 
+  value: Value
+  next_value: Value to write
+
   template_text: "Please enter the number of states you want:"
   from_file: Open a file to write in it
   to_file: Save as a new file

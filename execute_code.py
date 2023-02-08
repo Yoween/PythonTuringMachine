@@ -57,6 +57,9 @@ def move(self, ui, direction: str):
     if self.execution == ():
         return
     self.tape_memory.move(ui, direction)
+    tape_index = self.tape_memory.get_position()
+    tape_index_value = self.tape_memory.read(tape_index)
+    self.current_value.config(text=tape_index_value)
 
 def write(self, ui, value: str):
     """Writes a value on the 'tape' (tape_memory.tape) based on the parameter.
@@ -67,6 +70,9 @@ def write(self, ui, value: str):
     if self.execution == ():
         return
     self.tape_memory.write(ui, self.tape_memory.get_position(), value)
+    tape_index = self.tape_memory.get_position()
+    tape_index_value = self.tape_memory.read(tape_index)
+    self.current_value.config(text=tape_index_value)
 
 def clear_tape(self, ui):
     """Clears the 'tape' (tape_memory) by instantiating the class again. The previous tape will be left unused and eventually discarded by the garbage collector.

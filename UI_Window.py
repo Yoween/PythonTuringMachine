@@ -94,9 +94,9 @@ class UI_Window():
         self.button_left.grid(row=10, column=3, sticky='nesw')
         self.button_right = tk.Button(self.right_tab, text=i18n.t("right"), command= lambda: move(self, self, ">"))
         self.button_right.grid(row=10, column=4, sticky='nesw')
-        self.current_label = tk.Label(self.right_tab, text="Value:")
+        self.current_label = tk.Label(self.right_tab, text=i18n.t("value"))
         self.current_label.grid(row=10, column=5)
-        self.next_label = tk.Label(self.right_tab, text="Next instruction:")
+        self.next_label = tk.Label(self.right_tab, text=i18n.t("next_value"))
         self.next_label.grid(row=10, column=6)
         
         slow_execution_var = tk.IntVar()

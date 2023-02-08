@@ -26,6 +26,9 @@ fr:
   please_no: Non
   quit: Quitter
 
+  value: Valeur
+  next_value: Valeur à écrire
+
   template_text: "Veuillez entrer le nombre d'états souhaités : "
   from_file: Ouvrir un fichier pour écrire
   to_file: Sauvegarder dans un nouveau fichier
