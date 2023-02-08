@@ -83,14 +83,14 @@ class Tape() :
         return nothing, just change call 'set_position()' to update the current position in {self.tape}
         '''
         if direction == "<" :
-            self.set_position(self.get_position()+1)
+            self.set_position(self.get_position()-1)
             if len(self.tape[:self.get_position()+1]) < 16 :
                 self.tape = ["b"] + self.tape
-                self.set_position(self.get_position()-1)
+                self.set_position(self.get_position()+1)
                 self.set_origin(self.get_origin()-1)
 
         if direction == ">" :
-            self.set_position(self.get_position()-1)
+            self.set_position(self.get_position()+1)
             if len(self.tape[self.get_position():-1]) < 16 :
                 self.tape.append("b")
                 
