@@ -58,7 +58,7 @@ class UI_Window():
         self.menu_languages.add_command(label="English", command=lambda: change_language(self, "en"))
         self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
         
-        self.menu.add_command(label=i18n.t("help"), command= lambda: help(self))
+        # self.menu.add_command(label=i18n.t("help"), command= lambda: help(self))
         
         self.menu.add_command(label="Github", command= lambda: webbrowser.open("https://github.com/Yoween/PythonTuringMachine"))
 

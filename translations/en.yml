@@ -24,6 +24,9 @@ en:
   restart_required: A restart is required. Do you want to restart now?
   indeed: Okay
   please_no: Cancel
+  quit: Quit
+
+  template_text: "Please enter the number of states you want:"
 
   help_1: Welcome to the help menu
   help_2: To use this, you first need to understand how a Turing machine works.

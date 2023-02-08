@@ -24,6 +24,9 @@ fr:
   restart_required: Un redémarrage est nécessaire. Voulez-vous redémarrer maintenant ?
   indeed: Oui
   please_no: Non
+  quit: Quitter
+
+  template_text: "Veuillez entrer le nombre d'états souhaités : "
 
   help_1: Bienvenue dans le menu d'aide
   help_2: Pour utiliser ce programme, vous devez d'abord comprendre comment fonctionne une machine de Turing.
