@@ -11,7 +11,7 @@ from Tape import Tape
 from execute_code import import_code, execute_code, move, write, clear_tape
 from generate_template import generate_template, help
 from scrollable_frame import scroll_bar
-from languages import initialisation, change_language
+from initialisation import initialisation, change_language
 
 
 
@@ -70,15 +70,10 @@ class UI_Window():
 
         self.root.config(menu=self.menu)        
 
-
         self.execution_tab()
         self.preview_tab()
 
-        
 
-        self.right_tab.pack(side='right', expand=True, fill='both')
-        
-        
     def execution_tab(self):
         try:
             self.right_tab.destroy()

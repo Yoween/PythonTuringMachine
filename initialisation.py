@@ -18,7 +18,7 @@ def initialisation(self):
     with open(self.config_file, "r") as f:
         self.config = json.load(f)
     i18n.set("locale", self.config["language"])
-    
+
 def change_language(self, language):
     with open(self.config_file, "w") as f:
         self.config["language"] = language

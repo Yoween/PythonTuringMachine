@@ -48,15 +48,14 @@ class Tape() :
             x += ", " + str(element)
         return x
         
-    def write(self, ui, index: int, value: str, direction = 0) :
-        '''
-            parameters :
-        ui -> Class : the tkinter display
-        index -> int : index of the value to change
-        value -> str : new value of {self.tape} at index {index}
-            return :
-        return nothing, just change the value at index {index}
-        '''
+    def write(self, ui, index: int, value: str) :
+        """Writes the provided value in the provided cell at provided index
+
+        Args:
+            ui (class): Called to update the display
+            index (int): The position you're at
+            value (str): The value you write at the position
+        """
         if index >= len(self.tape) :
             self.tape.append(value)
         else :
@@ -65,13 +64,12 @@ class Tape() :
         self.update_display(ui)
 
     def move(self, ui, direction: str) :
-        '''
-            parameters :
-            ui -> Class : the tkinter display
-        direction -> str = '<' or '>' : the direction to forward in {self.tape}
-            return :
-        return nothing, just change call 'set_position()' to update the current position in {self.tape}
-        '''
+        """Move on the tape in the provided directions
+
+        Args:
+            ui (class): Called to update the display
+            direction (str): The direction you move (">" or "<")
+        """
         if direction == "<" :
             self.set_position(self.get_position()-1)
             if len(self.tape[:self.get_position()+1]) < 16 :

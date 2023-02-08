@@ -67,7 +67,6 @@ def write(self, ui, value: str):
     if self.execution == ():
         return
     self.tape_memory.write(ui, self.tape_memory.get_position(), value)
-    print(self.tape_memory.tape)
 
 def clear_tape(self, ui):
     """Clears the 'tape' (tape_memory) by instantiating the class again. The previous tape will be left unused and eventually discarded by the garbage collector.
@@ -83,6 +82,4 @@ def clear_tape(self, ui):
     ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
     ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
     for value in ui.circles.values() :
-        ui.drawcircle(ui.canvas2, value[0], value[1], 6, value[2]) 
-    print(self.tape_memory.tape)
-    print(self.tape_memory.tape)
+        ui.drawcircle(ui.canvas2, value[0], value[1], 6, value[2])
