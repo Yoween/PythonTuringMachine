@@ -71,7 +71,7 @@ class ExecuteInstructions():
                 return False
 
 
-    def start(self, ui, instructions:dict, tape_memory = Tape(), delay = 0):
+    def start(self, ui, instructions:dict, current_value_label, next_value_label, tape_memory = Tape(), delay = 0):
         """Executes the program when called. Used instead of '__init__' so we can decide when to start it. The core of the program, which executes instructions as a Turing machine would do.
 
         Args:
@@ -84,8 +84,12 @@ class ExecuteInstructions():
         while iterations > 0:
             tape_index = tape_memory.get_position()
             tape_index_value = tape_memory.read(tape_index)
-                
+
             sub_insruction = instructions[self.current_state][tape_index_value]
+
+            current_value_label.config(text=tape_index_value)
+            next_value_label.config(text=sub_insruction[0])
+
             if sub_insruction[0] == "-":
                 tape_memory.write(ui, tape_index, tape_index_value)
             else :
