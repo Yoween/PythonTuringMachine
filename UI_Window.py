@@ -1,4 +1,5 @@
-# ui_choice1.py
+#!/usr/bin/env python3
+# UI_Window.py
 # 
 # ADAM Loris, LAROCHE Tristan
 # 20-Dec-2022

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # execute_code.py
 #
 # LAROCHE Tristan
