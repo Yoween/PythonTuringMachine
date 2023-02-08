@@ -73,12 +73,12 @@ def clear_tape(self, ui):
     """Clears the 'tape' (tape_memory) by instantiating the class again. The previous tape will be left unused and eventually discarded by the garbage collector.
     """
     self.tape_memory = Tape()
-    ui.circles = {'-14': [40, 20, 'white'], '-13': [42, 40, 'white'], '-12': [45, 60, 'white'], '-11': [49, 80, 'white'], '-10': [54, 100, 'white'],
-                        '-9': [60, 120, 'white'], '-8': [68, 140, 'white'], '-7': [78, 160, 'white'], '-6': [90, 180, 'white'], '-5': [104, 200, 'white'],
-                        '-4': [120, 220, 'white'], '-3': [138, 240, 'white'], '-2': [158, 260, 'white'], '-1': [180, 270, 'white'], '0': [204, 275, 'white'],
-                        '1': [228, 270, 'white'], '2': [250, 260, 'white'], '3': [270, 240, 'white'], '4':[288, 220, 'white'], '5': [304, 200, 'white'],
-                        '6': [318, 180, 'white'], '7': [330, 160, 'white'], '8': [340, 140, 'white'], '9': [348, 120, 'white'], '10': [354, 100, 'white'],
-                        '11': [359, 80, 'white'], '12': [363, 60, 'white'], '13': [366, 40, 'white'], '14': [368, 20, 'white']}
+    self.circles = {'14': [40, 20, 'white'], '13': [42, 40, 'white'], '12': [45, 60, 'white'], '11': [49, 80, 'white'], '10': [54, 100, 'white'],
+                    '9': [60, 120, 'white'], '8': [68, 140, 'white'], '7': [78, 160, 'white'], '6': [90, 180, 'white'], '5': [104, 200, 'white'],
+                    '4': [120, 220, 'white'], '3': [138, 240, 'white'], '2': [158, 260, 'white'], '1': [180, 270, 'white'], '0': [204, 275, 'white'],
+                    '-1': [228, 270, 'white'], '-2': [250, 260, 'white'], '-3': [270, 240, 'white'], '-4':[288, 220, 'white'], '-5': [304, 200, 'white'],
+                    '-6': [318, 180, 'white'], '-7': [330, 160, 'white'], '-8': [340, 140, 'white'], '-9': [348, 120, 'white'], '-10': [354, 100, 'white'],
+                    '-11': [359, 80, 'white'], '-12': [363, 60, 'white'], '-13': [366, 40, 'white'], '-14': [368, 20, 'white']}
     ui.canvas2.destroy()
     ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
     ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
