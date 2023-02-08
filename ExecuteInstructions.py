@@ -71,7 +71,7 @@ class ExecuteInstructions():
                 return False
 
 
-    def start(self, ui, instructions:dict, tape_memory = Tape(), delay = 0):
+    def start(self, ui, instructions:dict, tape_memory, delay = 0):
         """Executes the program when called. Used instead of '__init__' so we can decide when to start it. The core of the program, which executes instructions as a Turing machine would do.
 
         Args:

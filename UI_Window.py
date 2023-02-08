@@ -97,7 +97,7 @@ class UI_Window():
         self.button_left.grid(row=10, column=2, sticky='nesw')
         self.button_right = tk.Button(self.right_tab, text=i18n.t("right"), command= lambda: move(self, self, ">"))
         self.button_right.grid(row=10, column=3, sticky='nesw')
-        self.button_clear = tk.Button(self.right_tab, text=i18n.t("clear"), command= lambda: clear_tape(self))
+        self.button_clear = tk.Button(self.right_tab, text=i18n.t("clear"), command= lambda: clear_tape(self, self))
         self.button_clear.grid(row=10, column=4, sticky='nesw')
         
         slow_execution_var = tk.IntVar()
