@@ -7,6 +7,7 @@
 import logging
 from Tape import Tape
 from time import sleep
+import tkinter as tk
 
 class ExecuteInstructions():
     allowed_characters = ("b", ">", "<", "f", "-")
@@ -69,7 +70,7 @@ class ExecuteInstructions():
                 return False
 
 
-    def start(self, selfe, instructions:dict, tape_memory = Tape(), delay = 0):
+    def start(self, ui, instructions:dict, tape_memory = Tape(), delay = 0):
         """Executes the program when called. Used instead of '__init__' so we can decide when to start it. The core of the program, which executes instructions as a Turing machine would do.
 
         Args:
@@ -101,14 +102,16 @@ class ExecuteInstructions():
                     iterations -= 1
             sleep(delay)
             print(tape_memory.tape)
-            for key in selfe.circles.keys() :
+            for key in ui.circles.keys() :
                 if tape_memory.read(tape_index - int(key)) == 'b':
-                    selfe.circles[key] = 'white'
+                    ui.circles[key][2] = 'white'
                 if tape_memory.read(tape_index - int(key)) == '0':
-                    selfe.circles[key] = 'blue'
+                    ui.circles[key][2] = 'blue'
                 if tape_memory.read(tape_index - int(key)) == '1':
-                    selfe.circles[key] = 'grey'
-            selfe.canvas2.destroy()
-            selfe.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
-            for value in selfe.circles.values() :
-                selfe.drawcircle(selfe.canvas2, value[0], value[1], 6, value[2])
+                    ui.circles[key][2] = 'grey'
+            ui.canvas2.destroy()
+            ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
+            ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
+            print(tape_memory.tape)
+            for value in ui.circles.values() :
+                ui.drawcircle(ui.canvas2, value[0], value[1], 6, value[2])

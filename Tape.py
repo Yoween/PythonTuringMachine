@@ -13,9 +13,9 @@ class Tape() :
         return nothing, just create the list {self.tape}, the {self.origin} who is the index 0 of {self.tape}
                         and {self.position} the current position in the tape
         '''
-        self.tape = ["b"] * 10
-        self.origin = 1
-        self.position = 1
+        self.tape = ["b"] * 29
+        self.origin = 14
+        self.position = 14
     
     def read(self, index: int) :
         '''
@@ -24,7 +24,15 @@ class Tape() :
             return :
         self.tape[index] -> str : return the value of the list at index {index}
         '''
-        return self.tape[index]
+        try :
+            return self.tape[index]
+        except :
+            while len(self.tape[:self.get_position()+1]) < 16 :
+                self.tape = ["b"] + self.tape
+                self.set_origin(self.get_origin()+1)
+                self.set_position(self.get_position()+1)
+            while len(self.tape[self.get_position():-1]) < 16 :
+                self.tape.append("b")
     
     def read_all(self) :
         '''
@@ -60,13 +68,13 @@ class Tape() :
         '''
         if direction == "<" :
             self.set_position(self.get_position()-1)
-            if self.get_position() < 0 :
+            while len(self.tape[:self.get_position()+1]) < 16 :
                 self.tape = ["b"] + self.tape
-                self.set_position(self.get_position()+1)
                 self.set_origin(self.get_origin()+1)
+
         if direction == ">" :
             self.set_position(self.get_position()+1)
-            if self.get_position() >= len(self.tape) :
+            while len(self.tape[self.get_position():-1]) < 16 :
                 self.tape.append("b")
 
     def set_position(self, value: int) :
