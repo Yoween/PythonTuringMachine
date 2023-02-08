@@ -61,18 +61,8 @@ class Tape() :
             self.tape.append(value)
         else :
             self.tape[index] = value
-        for key in ui.circles.keys() :
-                if self.tape[self.get_position() - int(key)] == 'b':
-                    ui.circles[key][2] = 'white'
-                if self.tape[self.get_position() - int(key)] == '0':
-                    ui.circles[key][2] = 'blue'
-                if self.tape[self.get_position() - int(key)] == '1':
-                    ui.circles[key][2] = 'grey'
-        ui.canvas2.destroy()
-        ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
-        ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
-        for value in ui.circles.values() :
-            ui.drawcircle(ui.canvas2, value[0], value[1], 6, value[2])
+            
+        self.update_display(ui)
 
     def move(self, ui, direction: str) :
         '''
@@ -94,18 +84,7 @@ class Tape() :
             if len(self.tape[self.get_position():-1]) < 16 :
                 self.tape.append("b")
                 
-        for key in ui.circles.keys() :
-                if self.tape[self.get_position() - int(key)] == 'b':
-                    ui.circles[key][2] = 'white'
-                if self.tape[self.get_position() - int(key)] == '0':
-                    ui.circles[key][2] = 'grey'
-                if self.tape[self.get_position() - int(key)] == '1':
-                    ui.circles[key][2] = 'blue'
-        ui.canvas2.destroy()
-        ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
-        ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
-        for value in ui.circles.values() :
-            ui.drawcircle(ui.canvas2, value[0], value[1], 6, value[2]) 
+        self.update_display(ui)
 
     def set_position(self, value: int) :
         '''
@@ -143,3 +122,16 @@ class Tape() :
         '''
         return self.origin
         
+    def update_display(self, ui):
+        for key in ui.circles.keys() :
+                if self.tape[self.get_position() - int(key)] == 'b':
+                    ui.circles[key][2] = 'white'
+                if self.tape[self.get_position() - int(key)] == '0':
+                    ui.circles[key][2] = 'grey'
+                if self.tape[self.get_position() - int(key)] == '1':
+                    ui.circles[key][2] = 'blue'
+        ui.canvas2.destroy()
+        ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
+        ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
+        for value in ui.circles.values() :
+            ui.drawcircle(ui.canvas2, value[0], value[1], 6, value[2]) 
