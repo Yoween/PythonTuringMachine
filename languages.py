@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# languages.py
+#
+# LAROCHE Tristan
+# 06-02-2023
+#==================================
+
 import os, sys, i18n, json
 import tkinter as tk
 

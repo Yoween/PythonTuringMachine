@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # scrollable_frame.py
 #
 # ADAM Loris
