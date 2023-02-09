@@ -5,10 +5,11 @@
 # 21-12-2022
 #==================================
 
-import logging
+import logging, i18n
 from Tape import Tape
 from time import sleep
 import tkinter as tk
+
 
 class ExecuteInstructions():
     allowed_characters = ("b", ">", "<", "f", "-")
@@ -104,6 +105,10 @@ class ExecuteInstructions():
 
             if sub_instruction[2] == "f":
                 iterations = 0
+                top_level = tk.Toplevel(ui.root)
+                ui.root.eval(f'tk::PlaceWindow {str(top_level)} center')
+                tk.Label(top_level, text=i18n.t("done")).pack()
+                tk.Button(top_level, command=lambda : top_level.destroy()).pack()
             else:
                 previous_state = self.current_state
                 self.current_state = sub_instruction[2]

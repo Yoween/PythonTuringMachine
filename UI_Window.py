@@ -22,8 +22,8 @@ class UI_Window():
         initialisation(self)
         
         
-        self.width = 1080
-        self.height = 720
+        self.width = 800
+        self.height = 380
         self.root = tk.Tk()
         self.root.geometry('%dx%d+%d+%d' % (self.width, self.height, int(self.root.winfo_screenwidth()/2 - self.width/2),
                                         int(self.root.winfo_screenheight()/2 - self.height/2)))
@@ -87,32 +87,34 @@ class UI_Window():
         for value in self.circles.values() :
             self.drawcircle(self.canvas2, value[0], value[1], 6, value[2])
 
+
+
         self.button_go = tk.Button(self.right_tab, text=i18n.t("start"), command= lambda: execute_code(self, self, self.instructions, slow_execution_var.get()))
-        self.button_go.grid(row=10, column=1, sticky='nesw')
+        self.button_go.grid(row=10, column=0, padx=10, sticky='nesw')
         self.button_clear = tk.Button(self.right_tab, text=i18n.t("clear"), command= lambda: clear_tape(self, self))
-        self.button_clear.grid(row=10, column=2, sticky='nesw')
+        self.button_clear.grid(row=10, column=1, sticky='nesw')
         self.button_left = tk.Button(self.right_tab, text=i18n.t("left"), command= lambda: move(self, self, "<"))
-        self.button_left.grid(row=10, column=3, sticky='nesw')
+        self.button_left.grid(row=10, column=2, sticky='nesw')
         self.button_right = tk.Button(self.right_tab, text=i18n.t("right"), command= lambda: move(self, self, ">"))
-        self.button_right.grid(row=10, column=4, sticky='nesw')
+        self.button_right.grid(row=10, column=3, sticky='nesw')
         self.current_label = tk.Label(self.right_tab, text=i18n.t("value"))
-        self.current_label.grid(row=10, column=5)
+        self.current_label.grid(row=10, column=4, padx=(10,0), sticky='nesw')
         self.next_label = tk.Label(self.right_tab, text=i18n.t("next_value"))
-        self.next_label.grid(row=10, column=6)
+        self.next_label.grid(row=10, column=5, padx=(0,10), sticky='nesw')
         
         slow_execution_var = tk.IntVar()
         self.button_slow = tk.Checkbutton(self.right_tab, text=i18n.t("slow"), variable= slow_execution_var, offvalue= 0, onvalue= 1)
-        self.button_slow.grid(row=11, column=1, sticky='nesw')
+        self.button_slow.grid(row=11, column=0, padx=10, sticky='nesw')
         self.button_b = tk.Button(self.right_tab, text="b", command= lambda: write(self, self, "b"))
-        self.button_b.grid(row=11, column=2, sticky='nesw')
+        self.button_b.grid(row=11, column=1, sticky='nesw')
         self.button_0 = tk.Button(self.right_tab, text="0", command= lambda: write(self, self, "0"))
-        self.button_0.grid(row=11, column=3, sticky='nesw')
+        self.button_0.grid(row=11, column=2, sticky='nesw')
         self.button_1 = tk.Button(self.right_tab, text="1", command= lambda: write(self, self, "1"))
-        self.button_1.grid(row=11, column=4, sticky='nesw') 
+        self.button_1.grid(row=11, column=3, sticky='nesw') 
         self.current_value = tk.Label(self.right_tab, text="")
-        self.current_value.grid(row=11, column=5)
+        self.current_value.grid(row=11, column=4, padx=(10,0), sticky='nesw')
         self.next_value = tk.Label(self.right_tab, text="")
-        self.next_value.grid(row=11, column=6)
+        self.next_value.grid(row=11, column=5, padx=(0,10), sticky='nesw')
 
         self.right_tab.pack(side='right', expand=True, fill='both')
         for i in range(5) :
@@ -217,7 +219,7 @@ class UI_Window():
         width -> int: the width of the left tab in pixels 
         create the canvas and the scrollable frame and the scroll bar
         """
-        self.canvas = tk.Canvas(container, width=int(width/9), bg='gray94')
+        self.canvas = tk.Canvas(container, width=int(width/7), bg='gray94')
         self.scrollbar = tk.Scrollbar(container, orient="vertical", command=self.canvas.yview)
         self.scrollable_frame = tk.Frame(self.canvas)
 
