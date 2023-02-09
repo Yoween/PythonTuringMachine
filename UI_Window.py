@@ -66,7 +66,7 @@ class UI_Window():
         
         self.menu.add_command(label="Github", command= lambda: webbrowser.open("https://github.com/Yoween/PythonTuringMachine"))
 
-        self.root.config(menu=self.menu)        
+        self.root.config(menu=self.menu) 
 
         self.execution_tab()
         self.preview_tab()
