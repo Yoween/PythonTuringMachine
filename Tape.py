@@ -2,7 +2,7 @@
 # Tape.py
 #
 # ADAM Loris
-# ??-??-????
+# 25-12-2022
 #==================================
 import tkinter as tk
 class Tape() :
@@ -85,6 +85,10 @@ class Tape() :
         self.update_display(ui)
 
     def update_display(self, ui):
+        """
+        ui -> class: the class of the window
+        update the canvas which show the exection of the code
+        """
         for key in ui.circles.keys() :
             if self.tape[self.position - int(key)] == 'b':
                 ui.circles[key][2] = 'white'

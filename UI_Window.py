@@ -10,7 +10,6 @@ import os, i18n, webbrowser, subprocess
 from Tape import Tape
 from execute_code import import_code, execute_code, move, write, clear_tape
 from generate_template import generate_template
-from scrollable_frame import scroll_bar
 from initialisation import initialisation, change_language
 
 
@@ -128,7 +127,7 @@ class UI_Window():
             pass
         self.left_tab = tk.Frame(self.root)
 
-        scroll_bar(self, self.left_tab, self.root.winfo_screenwidth())
+        self.scroll_bar(self, self.left_tab, self.root.winfo_screenwidth())
 
         self.text_name = ("state", "read", "write", "move", "new_state")
         for i in range(5) :
@@ -201,11 +200,23 @@ class UI_Window():
                 amount -= 1
             x += 1
 
-    def drawcircle(self, canv, x: int, y:int , rad:int, color:str):
-        # Draw circles
+    def drawcircle(self, canv: object, x: int, y:int , rad:int, color:str):
+        """
+        canv -> class : the canvas to draw in 
+        x -> int : position in abscissa for the circle
+        y -> int : position in ordinate for the circle
+        rad -> int : radius of the circle
+        color -> str : the color of the circles 
+        create the circles with the color for the state, blank 'b', gray '0', blue '1'
+        """
         canv.create_oval(x-rad, y-rad, x+rad, y+rad, width=0, fill=f'{color}')
         
-    def scroll_bar(self, container, width) :
+    def scroll_bar(self, container: object, width: int) :
+        """
+        container -> class: the that will contains the scroll bar
+        width -> int: the width of the left tab in pixels 
+        create the canvas and the scrollable frame and the scroll bar
+        """
         self.canvas = tk.Canvas(container, width=int(width/9), bg='gray94')
         self.scrollbar = tk.Scrollbar(container, orient="vertical", command=self.canvas.yview)
         self.scrollable_frame = tk.Frame(self.canvas)
