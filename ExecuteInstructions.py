@@ -89,10 +89,12 @@ class ExecuteInstructions():
 
             current_value_label.config(text=tape_index_value)
             next_value_label.config(text=sub_insruction[0])
+            
 
             if sub_insruction[0] == "-":
                 tape_memory.write(ui, tape_index, tape_index_value)
             else :
+                self.__dict__[f"label_write{self.current_state}_{sub_insruction[0]}"].config(bg="blue")
                 tape_memory.write(ui, tape_index, sub_insruction[0])
                 
             if sub_insruction[1] != "-":

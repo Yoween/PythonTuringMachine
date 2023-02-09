@@ -42,7 +42,7 @@ class UI_Window():
                         '-6': [318, 180, 'white'], '-7': [330, 160, 'white'], '-8': [340, 140, 'white'], '-9': [348, 120, 'white'], '-10': [354, 100, 'white'],
                         '-11': [359, 80, 'white'], '-12': [363, 60, 'white'], '-13': [366, 40, 'white'], '-14': [368, 20, 'white']}
         self.tape_memory = Tape()
-        self.default_path = os.path.abspath(__file__) + "/../default_templates"
+        self.default_path = os.getcwd() + "/default_templates"
 
         self.menu = tk.Menu(self.root)    
         self.menu_file = tk.Menu(tearoff=0)
@@ -112,6 +112,8 @@ class UI_Window():
         self.current_value.grid(row=11, column=5)
         self.next_value = tk.Label(self.right_tab, text="")
         self.next_value.grid(row=11, column=6)
+        self.test = tk.Button(self.right_tab, command=lambda:"")
+        self.test.grid(row=12, column=1)
 
         self.right_tab.pack(side='right', expand=True, fill='both')
         for i in range(5) :
