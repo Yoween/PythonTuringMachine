@@ -6,14 +6,12 @@
 #==================================
 
 import tkinter as tk
-import os, i18n, webbrowser
+import os, i18n, webbrowser, subprocess
 from Tape import Tape
 from execute_code import import_code, execute_code, move, write, clear_tape
-from generate_template import generate_template, help
+from generate_template import generate_template
 from scrollable_frame import scroll_bar
 from initialisation import initialisation, change_language
-import subprocess
-
 
 
 class UI_Window():
@@ -49,7 +47,7 @@ class UI_Window():
         self.menu_file = tk.Menu(tearoff=0)
         self.menu.add_cascade(label=i18n.t("file"), menu=self.menu_file)
         self.menu_file.add_command(label=i18n.t("open"), command= lambda: import_code(self))
-        self.menu_file.add_command(label=i18n.t("exit"), command=lambda: self.root.destroy())
+        self.menu_file.add_command(label=i18n.t("exit"), command=self.root.destroy)
 
         self.menu_templates = tk.Menu(tearoff=0)
         self.menu.add_cascade(label=i18n.t("templates"), menu=self.menu_templates)
@@ -64,7 +62,8 @@ class UI_Window():
         self.menu.add_cascade(label=i18n.t("language"), menu=self.menu_languages)
         self.menu_languages.add_command(label="English", command=lambda: change_language(self, "en"))
         self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
-        self.menu.add_command(label=i18n.t("help"), command= lambda: subprocess.Popen([os.getcwd() + "\machinedeturingenpython.pdf"], shell = True) )
+        
+        self.menu.add_command(label=i18n.t("help"), command= lambda: subprocess.Popen([os.getcwd() + "/machinedeturingenpython.pdf"], shell = True) )
         
         self.menu.add_command(label="Github", command= lambda: webbrowser.open("https://github.com/Yoween/PythonTuringMachine"))
 
