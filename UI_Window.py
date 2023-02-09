@@ -12,6 +12,7 @@ from execute_code import import_code, execute_code, move, write, clear_tape
 from generate_template import generate_template, help
 from scrollable_frame import scroll_bar
 from initialisation import initialisation, change_language
+import subprocess
 
 
 
@@ -24,8 +25,8 @@ class UI_Window():
         initialisation(self)
         
         
-        self.width = 720
-        self.height = 480
+        self.width = 1080
+        self.height = 720
         self.root = tk.Tk()
         self.root.geometry('%dx%d+%d+%d' % (self.width, self.height, int(self.root.winfo_screenwidth()/2 - self.width/2),
                                         int(self.root.winfo_screenheight()/2 - self.height/2)))
@@ -63,8 +64,7 @@ class UI_Window():
         self.menu.add_cascade(label=i18n.t("language"), menu=self.menu_languages)
         self.menu_languages.add_command(label="English", command=lambda: change_language(self, "en"))
         self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
-        
-        # self.menu.add_command(label=i18n.t("help"), command= lambda: help(self))
+        self.menu.add_command(label=i18n.t("help"), command= lambda: subprocess.Popen([os.getcwd() + "\machinedeturingenpython.pdf"], shell = True) )
         
         self.menu.add_command(label="Github", command= lambda: webbrowser.open("https://github.com/Yoween/PythonTuringMachine"))
 
