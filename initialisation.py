@@ -9,6 +9,9 @@ import os, sys, i18n, json
 import tkinter as tk
 
 def initialisation(self):
+    """
+    initialisation of everything
+    """
     self.config_file = os.getcwd() + "/config.json"
     if not os.path.exists(self.config_file):
         with open(self.config_file, 'w') as fp:
@@ -21,6 +24,9 @@ def initialisation(self):
     self.background_color = self.config["highlight_color"]
 
 def change_language(self, language):
+    """
+    permute between english and french
+    """
     with open(self.config_file, "w") as f:
         self.config["language"] = language
         json.dump(self.config, f)

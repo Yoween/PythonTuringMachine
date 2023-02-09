@@ -127,7 +127,7 @@ class UI_Window():
             pass
         self.left_tab = tk.Frame(self.root)
 
-        self.scroll_bar(self, self.left_tab, self.root.winfo_screenwidth())
+        self.scroll_bar( self.left_tab, self.root.winfo_screenwidth())
 
         self.text_name = ("state", "read", "write", "move", "new_state")
         for i in range(5) :

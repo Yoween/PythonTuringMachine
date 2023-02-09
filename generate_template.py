@@ -22,6 +22,7 @@ def generate_template(self):
     tk.Radiobutton(self.generation_window, text=i18n.t("to_file"), variable= choice, value= 1).pack()
     tk.Button(self.generation_window, text= "Go!", command= lambda: [template_creator(entry.get(), choice.get())]).pack()
     tk.Button(self.generation_window, text= i18n.t("quit"), command= self.generation_window.destroy).pack()
+    
 def template_creator(size: int, choice:int):
     """Opens a file and creates and empty template
 

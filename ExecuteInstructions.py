@@ -63,6 +63,10 @@ class ExecuteInstructions():
         return True
 
     def is_complete(self, instructions:dict):
+        """
+        instructions -> dict: dictionnary with all instructions
+        verify that the dictionnary is complete 
+        """
         for i in range(1, len(instructions) + 1):
             if len(instructions[str(i)]) != 3:
                 self.error = f"Missing instructions line"
