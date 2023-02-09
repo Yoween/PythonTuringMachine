@@ -179,7 +179,9 @@ class UI_Window():
             if not f'label_state{x}' in self.__dict__.keys() :
                 for i in range(3) :
                     self.__dict__[f"label_state{x}"] = tk.Label(self.scrollable_frame, text= f"{x}")
-                    self.__dict__[f"label_state{x}"].grid(row=3*x-2, rowspan= 3, column=0, sticky='nesw')
+                    self.__dict__[f"label_state{x}"].grid(row=3*x-1, column=0, sticky='nesw')
+                    tk.Label(self.scrollable_frame, text= '"').grid(row=3*x, column=0, sticky='nesw')
+                    tk.Label(self.scrollable_frame, text= '"').grid(row=3*x-2, column=0, sticky='nesw')
 
                     self.__dict__[f"label_state{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text= f"{key[i]}")
                     self.__dict__[f"label_state{x}_{key[i]}"].grid(row=3*x-2+i, column=1, sticky='nesw')
