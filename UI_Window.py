@@ -133,7 +133,7 @@ class UI_Window():
         self.text_name = ("state", "read", "write", "move", "new_state")
         for i in range(5) :
 
-            self.__dict__[f"label_{self.text_name[i]}"] = tk.Label(self.scrollable_frame, text=f"{i18n.t(self.self.text_name[i])}", relief=tk.RIDGE) 
+            self.__dict__[f"label_{self.text_name[i]}"] = tk.Label(self.scrollable_frame, text=f"{i18n.t(self.text_name[i])}", relief=tk.RIDGE) 
             self.__dict__[f"label_{self.text_name[i]}"].grid(row=0, column=i, sticky='nesw')
 
         self.left_tab.pack(side='left', expand=True, fill='both')

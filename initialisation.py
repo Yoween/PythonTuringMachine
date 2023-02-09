@@ -10,7 +10,6 @@ import tkinter as tk
 
 def initialisation(self):
     self.config_file = os.getcwd() + "/config.json"
-    print(os.getcwd())
     if not os.path.exists(self.config_file):
         with open(self.config_file, 'w') as fp:
             fp.write('{"language":"en"}')
