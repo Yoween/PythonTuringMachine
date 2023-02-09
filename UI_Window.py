@@ -81,7 +81,7 @@ class UI_Window():
         self.right_tab = tk.Frame(self.root, bg='AntiqueWhite2')
 
         self.canvas2 = tk.Canvas(self.right_tab, height=310,  bg='AntiqueWhite2')
-        self.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
+        self.canvas2.grid(row=1, column=0, columnspan=8, sticky='nesw')
         for value in self.circles.values() :
             self.drawcircle(self.canvas2, value[0], value[1], 6, value[2])
 
@@ -179,8 +179,8 @@ class UI_Window():
                 for i in range(3) :
                     self.__dict__[f"label_state{x}"] = tk.Label(self.scrollable_frame, text= f"{x}")
                     self.__dict__[f"label_state{x}"].grid(row=3*x-1, column=0, sticky='nesw')
-                    tk.Label(self.scrollable_frame, text= '"').grid(row=3*x, column=0, sticky='nesw')
-                    tk.Label(self.scrollable_frame, text= '"').grid(row=3*x-2, column=0, sticky='nesw')
+                    tk.Label(self.scrollable_frame, text= '||').grid(row=3*x, column=0, sticky='nesw')
+                    tk.Label(self.scrollable_frame, text= '||').grid(row=3*x-2, column=0, sticky='nesw')
 
                     self.__dict__[f"label_state{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text= f"{key[i]}")
                     self.__dict__[f"label_state{x}_{key[i]}"].grid(row=3*x-2+i, column=1, sticky='nesw')
