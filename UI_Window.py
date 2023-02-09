@@ -204,6 +204,22 @@ class UI_Window():
     def drawcircle(self, canv, x: int, y:int , rad:int, color:str):
         # Draw circles
         canv.create_oval(x-rad, y-rad, x+rad, y+rad, width=0, fill=f'{color}')
+        
+    def scroll_bar(self, container, width) :
+        self.canvas = tk.Canvas(container, width=int(width/9), bg='gray94')
+        self.scrollbar = tk.Scrollbar(container, orient="vertical", command=self.canvas.yview)
+        self.scrollable_frame = tk.Frame(self.canvas)
+
+        self.scrollable_frame.bind(
+            "<Configure>",
+            lambda e: self.canvas.configure(
+                scrollregion=self.canvas.bbox("all")
+            )
+        )
+
+        self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw", width=int(width/6))
+        self.canvas.configure(yscrollcommand=self.scrollbar.set)
+
 
 if __name__ ==  '__main__' :
     # Start the programm
