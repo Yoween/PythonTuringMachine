@@ -62,7 +62,7 @@ class UI_Window():
         self.menu_languages.add_command(label="English", command=lambda: change_language(self, "en"))
         self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
         
-        self.menu.add_command(label=i18n.t("help"), command= lambda: subprocess.Popen([os.getcwd() + "/machinedeturingenpython.pdf"], shell = True) )
+        self.menu.add_command(label=i18n.t("help"), command= lambda: subprocess.Popen([os.getcwd() + "/documentation.pdf"], shell = True) )
         
         self.menu.add_command(label="Github", command= lambda: webbrowser.open("https://github.com/Yoween/PythonTuringMachine"))
 
