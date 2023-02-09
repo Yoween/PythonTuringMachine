@@ -29,11 +29,11 @@ class Tape() :
         try :
             return self.tape[index]
         except :
-            while len(self.tape[:self.get_position()+1]) < 16 :
+            while len(self.tape[:self.position+1]) < 16 :
                 self.tape = ["b"] + self.tape
-                self.set_origin(self.get_origin()+1)
-                self.set_position(self.get_position()+1)
-            while len(self.tape[self.get_position():-1]) < 16 :
+                self.origin += 1
+                self.position += 1
+            while len(self.tape[self.position:-1]) < 16 :
                 self.tape.append("b")
     
     def read_all(self) :
@@ -71,62 +71,26 @@ class Tape() :
             direction (str): The direction you move (">" or "<")
         """
         if direction == "<" :
-            self.set_position(self.get_position()-1)
-            if len(self.tape[:self.get_position()+1]) < 16 :
+            self.position -= 1
+            if len(self.tape[:self.position+1]) < 16 :
                 self.tape = ["b"] + self.tape
-                self.set_position(self.get_position()+1)
-                self.set_origin(self.get_origin()-1)
+                self.position += 1
+                self.origin -= 1
 
         if direction == ">" :
-            self.set_position(self.get_position()+1)
-            if len(self.tape[self.get_position():-1]) < 16 :
+            self.position += 1
+            if len(self.tape[self.position:-1]) < 16 :
                 self.tape.append("b")
                 
         self.update_display(ui)
 
-    def set_position(self, value: int) :
-        '''
-            parameters :
-        value -> int : a number between -1 and 1
-            return :
-        retrun nothing, represent the movement towards the left or the right for the current position in {self.tape}
-        '''
-        self.position = value
-
-    def get_position(self) :
-        '''
-            parameters :
-        no parameters
-            return :
-        self.position -> int : curent position in {self.tape}
-        '''
-        return self.position
-
-    def set_origin(self, value: int):
-        '''
-            parameters :
-        no parameters
-            return :
-        return nothing, just update the origin, the index 0 at the creation of {the self.tape}
-        '''
-        self.origin = value
-
-    def get_origin(self) -> int:
-        '''
-            parameters :
-        no parameters 
-            return :
-        self.origin -> int : the original index 0 of {self.tape}
-        '''
-        return self.origin
-        
     def update_display(self, ui):
         for key in ui.circles.keys() :
-            if self.tape[self.get_position() - int(key)] == 'b':
+            if self.tape[self.position - int(key)] == 'b':
                 ui.circles[key][2] = 'white'
-            if self.tape[self.get_position() - int(key)] == '0':
+            if self.tape[self.position - int(key)] == '0':
                 ui.circles[key][2] = 'grey'
-            if self.tape[self.get_position() - int(key)] == '1':
+            if self.tape[self.position - int(key)] == '1':
                 ui.circles[key][2] = 'blue'
         ui.canvas2.destroy()
         ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')

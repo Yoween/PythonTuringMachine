@@ -32,9 +32,3 @@ fr:
   template_text: "Veuillez entrer le nombre d'états souhaités : "
   from_file: Ouvrir un fichier pour écrire
   to_file: Sauvegarder dans un nouveau fichier
-
-  help_1: Bienvenue dans le menu d'aide
-  help_2: Pour utiliser ce programme, vous devez d'abord comprendre comment fonctionne une machine de Turing.
-  help_3: Comment ça fonctionne ?
-  help_4: "Maintenant que vous avez une compréhension de base, laissez-nous vous introduire à la programmation.\nCe n'est en réalité pas très difficile à comprendre, car il n'y a que cinq instructions différentes:\nl'état actuel, la valeur que vous lisez, la valeur que vous écrivez, la direction dans laquelle vous vous déplacez, et l'état suivant.\nPour commencer, vous pouvez générer un modèle en cliquant sur le menu 'Modèles', puis sur 'Générer', et en précisant la taille (le nombre d'états que vous voulez, par exemple, 3 états [b, 0, 1] = 3)."
-  help_5: "Comme vous pouvez le voir, la fenêtre est divisée en deux parties. La partie gauche n'est là que pour prévisualiser votre programme et on ne peut pas interagir avec.\nCependant, la partie droite est différente et vous permet d'interagir avec elle en cliquant sur des boutons."
