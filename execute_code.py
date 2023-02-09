@@ -46,7 +46,7 @@ def execute_code(self, ui, instructions: dict, delay):
     """
     if instructions == {}:
         return
-    self.execution.start(ui, instructions, self.current_value, self.next_value, self.tape_memory, delay)
+    self.execution.start(ui, instructions, self.current_value, self.next_value, self.background_color, self.tape_memory, delay)
 
 def move(self, ui, direction: str):
     """Moves left or right on the 'tape' (tape_memory.tape) based on the parameter.

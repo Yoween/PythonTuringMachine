@@ -111,8 +111,6 @@ class UI_Window():
         self.current_value.grid(row=11, column=5)
         self.next_value = tk.Label(self.right_tab, text="")
         self.next_value.grid(row=11, column=6)
-        self.test = tk.Button(self.right_tab, command=lambda:"")
-        self.test.grid(row=12, column=1)
 
         self.right_tab.pack(side='right', expand=True, fill='both')
         for i in range(5) :
@@ -145,9 +143,9 @@ class UI_Window():
         while f"label_state{x}" in self.__dict__.keys() :
             del self.__dict__[f"label_state{x}"]
 
-            del self.__dict__[f"label_state{x}_b"]
-            del self.__dict__[f"label_state{x}_0"]
-            del self.__dict__[f"label_state{x}_1"]
+            del self.__dict__[f"label_read{x}_b"]
+            del self.__dict__[f"label_read{x}_0"]
+            del self.__dict__[f"label_read{x}_1"]
 
             del self.__dict__[f"label_write{x}_b"] 
             del self.__dict__[f"label_write{x}_0"] 
@@ -182,8 +180,8 @@ class UI_Window():
                     tk.Label(self.scrollable_frame, text= '||').grid(row=3*x, column=0, sticky='nesw')
                     tk.Label(self.scrollable_frame, text= '||').grid(row=3*x-2, column=0, sticky='nesw')
 
-                    self.__dict__[f"label_state{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text= f"{key[i]}")
-                    self.__dict__[f"label_state{x}_{key[i]}"].grid(row=3*x-2+i, column=1, sticky='nesw')
+                    self.__dict__[f"label_read{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text= f"{key[i]}")
+                    self.__dict__[f"label_read{x}_{key[i]}"].grid(row=3*x-2+i, column=1, sticky='nesw')
 
                     self.__dict__[f"label_write{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text= f"{instructions[key[i]][0]}")
                     self.__dict__[f"label_write{x}_{key[i]}"].grid(row=3*x-2+i, column= 2, sticky='nesw')
