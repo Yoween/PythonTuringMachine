@@ -57,7 +57,7 @@ def move(self, ui, direction: str):
     if self.execution == ():
         return
     self.tape_memory.move(ui, direction)
-    tape_index = self.tape_memory.get_position()
+    tape_index = self.tape_memory.position
     tape_index_value = self.tape_memory.read(tape_index)
     self.current_value.config(text=tape_index_value)
 
@@ -69,8 +69,8 @@ def write(self, ui, value: str):
     """
     if self.execution == ():
         return
-    self.tape_memory.write(ui, self.tape_memory.get_position(), value)
-    tape_index = self.tape_memory.get_position()
+    self.tape_memory.write(ui, self.tape_memory.position, value)
+    tape_index = self.tape_memory.position
     tape_index_value = self.tape_memory.read(tape_index)
     self.current_value.config(text=tape_index_value)
 

@@ -7,7 +7,7 @@
 
 from tkinter import filedialog
 import tkinter as tk
-import webbrowser, i18n
+import i18n
 
 def generate_template(self):
     """Creates a window with some text and buttons then calls "template_creator"
@@ -41,22 +41,3 @@ def template_creator(size: int, choice:int):
         for j in range(3):
             file.write(f"{i} : {steps[j]} : - : - : {i}\n")
     file.close()
-    
-def help(self):
-    """Just an help window
-    """
-    self.help_window = tk.Toplevel(self.root)
-    self.help_window.title("Help menu")
-    text1 = tk.Label(self.help_window, text=i18n.t("help_1"))
-    text1.pack()
-    text1.config(font=('Helvetica bold', 18))
-    text2 = tk.Label(self.help_window, text=i18n.t("help_2"))
-    text2.pack()
-    text2.config(font=('Helvetica bold', 18))
-    tk.Button(self.help_window, text=i18n.t("help_3"), command=lambda: webbrowser.open("https://www.futurelearn.com/info/courses/how-computers-work/0/steps/49259")).pack()
-    text3 = tk.Label(self.help_window, text=i18n.t("help_4"))
-    text3.pack()
-    text3.config(font=('Helvetica bold', 12))
-    text4 = tk.Label(self.help_window, text=i18n.t("help_5"))
-    text4.pack()
-    text4.config(font=('Helvetica bold', 12))

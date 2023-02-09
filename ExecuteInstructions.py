@@ -82,7 +82,7 @@ class ExecuteInstructions():
         iterations = len(instructions)
         self.current_state = "1"
         while iterations > 0:
-            tape_index = tape_memory.get_position()
+            tape_index = tape_memory.position
             tape_index_value = tape_memory.read(tape_index)
 
             sub_instruction = instructions[self.current_state][tape_index_value]
