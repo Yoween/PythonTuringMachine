@@ -74,6 +74,9 @@ class UI_Window():
 
 
     def execution_tab(self):
+        """
+        Create the display for the execution, each bloc of lines is a different row on the display
+        """
         try:
             self.right_tab.destroy()
         except:
@@ -120,18 +123,18 @@ class UI_Window():
         """This function is invoked when loading a file to clear the previous instructions and display the new ones.
         """
         try:
-            self.left_tab.destroy()
+            self.left_tab.destroy() 
         except:
             pass
         self.left_tab = tk.Frame(self.root)
 
         scroll_bar(self, self.left_tab, self.root.winfo_screenwidth())
-        text_name = ("state", "read", "write", "move", "new_state")
 
+        self.text_name = ("state", "read", "write", "move", "new_state")
         for i in range(5) :
 
-            self.__dict__[f"label_{text_name[i]}"] = tk.Label(self.scrollable_frame, text=f"{i18n.t(text_name[i])}", relief=tk.RIDGE)
-            self.__dict__[f"label_{text_name[i]}"].grid(row=0, column=i, sticky='nesw')
+            self.__dict__[f"label_{self.text_name[i]}"] = tk.Label(self.scrollable_frame, text=f"{i18n.t(self.self.text_name[i])}", relief=tk.RIDGE) 
+            self.__dict__[f"label_{self.text_name[i]}"].grid(row=0, column=i, sticky='nesw')
 
         self.left_tab.pack(side='left', expand=True, fill='both')
         self.canvas.pack(side="left", fill="both", expand=True)
@@ -141,6 +144,7 @@ class UI_Window():
 
         x = 1
         while f"label_state{x}" in self.__dict__.keys() :
+            # Delete all function which serve for the display of the code
             del self.__dict__[f"label_state{x}"]
 
             del self.__dict__[f"label_read{x}_b"]
@@ -174,7 +178,9 @@ class UI_Window():
         key = ("b","0","1")
         while amount > 0:
             if not f'label_state{x}' in self.__dict__.keys() :
+                # test if the variable already exists 
                 for i in range(3) :
+                    # Create each line for the State in code display
                     self.__dict__[f"label_state{x}"] = tk.Label(self.scrollable_frame, text= f"{x}")
                     self.__dict__[f"label_state{x}"].grid(row=3*x-1, column=0, sticky='nesw')
                     tk.Label(self.scrollable_frame, text= '||').grid(row=3*x, column=0, sticky='nesw')
@@ -191,12 +197,15 @@ class UI_Window():
 
                     self.__dict__[f"label_new_state{x}_{key[i]}"] = tk.Label(self.scrollable_frame, text=f'{instructions[key[i]][2]}')
                     self.__dict__[f"label_new_state{x}_{key[i]}"].grid(row=3*x-2+i, column=4, sticky='nesw')
+
                 amount -= 1
             x += 1
 
-    def drawcircle(self, canv, x, y, rad, color):
+    def drawcircle(self, canv, x: int, y:int , rad:int, color:str):
+        # Draw circles
         canv.create_oval(x-rad, y-rad, x+rad, y+rad, width=0, fill=f'{color}')
 
 if __name__ ==  '__main__' :
+    # Start the programm
     a = UI_Window()
     a.root.mainloop()
