@@ -93,9 +93,9 @@ class Tape() :
             if self.tape[self.position - int(key)] == 'b':
                 ui.circles[key][2] = 'white'
             if self.tape[self.position - int(key)] == '0':
-                ui.circles[key][2] = 'grey'
+                ui.circles[key][2] = ui.zero_color
             if self.tape[self.position - int(key)] == '1':
-                ui.circles[key][2] = 'blue'
+                ui.circles[key][2] = ui.one_color
         ui.canvas2.destroy()
         ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
         ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')

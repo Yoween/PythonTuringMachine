@@ -15,13 +15,15 @@ def initialisation(self):
     self.config_file = os.getcwd() + "/config.json"
     if not os.path.exists(self.config_file):
         with open(self.config_file, 'w') as fp:
-            fp.write('{"language":"en"}')
+            fp.write('{"language": "fr", "highlight_color": "lightblue", "one_color": "blue", "zero_color": "grey"}')
     i18n.load_path.append(os.getcwd() + "/translations")
     i18n.set("filename_format", "{locale}.{format}")
     with open(self.config_file, "r") as f:
         self.config = json.load(f)
     i18n.set("locale", self.config["language"])
     self.background_color = self.config["highlight_color"]
+    self.one_color = self.config["one_color"]
+    self.zero_color = self.config["zero_color"]
 
 def change_language(self, language):
     """
