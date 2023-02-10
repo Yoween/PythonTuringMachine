@@ -5,8 +5,7 @@
 # 06-02-2023
 #==================================
 
-import os, sys, i18n, json
-import tkinter as tk
+import os, i18n, json
 
 def initialisation(self):
     """
