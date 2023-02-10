@@ -108,7 +108,7 @@ class ExecuteInstructions():
                 top_level = tk.Toplevel(ui.root)
                 ui.root.eval(f'tk::PlaceWindow {str(top_level)} center')
                 tk.Label(top_level, text=i18n.t("done")).pack()
-                tk.Button(top_level, command=lambda : top_level.destroy()).pack()
+                tk.Button(top_level, text=i18n.t("quit"),command= top_level.destroy).pack()
             else:
                 previous_state = self.current_state
                 self.current_state = sub_instruction[2]
