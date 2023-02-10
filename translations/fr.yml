@@ -33,3 +33,11 @@ fr:
   template_text: "Veuillez entrer le nombre d'états souhaités : "
   from_file: Ouvrir un fichier pour écrire
   to_file: Sauvegarder dans un nouveau fichier
+
+  config_editor: Éditeur de configuration
+  color_highlight: Couleur de mise en valeur
+  color_one: 'Couleur de la valeur "1"'
+  color_zero: 'Couleur de la valeur "0"'
+  color_blank: 'Couleur de la valeur "b"'
+  save: Sauvegarder
+  cancel: Annuler

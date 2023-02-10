@@ -33,3 +33,11 @@ en:
   template_text: "Please enter the number of states you want:"
   from_file: Open a file to write in it
   to_file: Save as a new file
+
+  config_editor: Configuration editor
+  color_highlight: Highlight color
+  color_one: "Color for value '1'"
+  color_zero: "Color for value '0'"
+  color_blank: "Color for value 'b'"
+  save: Save
+  cancel: Cancel
