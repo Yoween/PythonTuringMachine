@@ -38,7 +38,7 @@ class UI_Window():
                         '4': [118, 220, self.color_blank], '3': [136, 237, self.color_blank], '2': [156, 252, self.color_blank], '1': [178, 265, self.color_blank], '0': [204, 270, self.color_blank],
                         '-1': [228, 265, self.color_blank], '-2': [250, 252, self.color_blank], '-3': [270, 237, self.color_blank], '-4':[288, 220, self.color_blank], '-5': [304, 200, self.color_blank],
                         '-6': [318, 180, self.color_blank], '-7': [330, 160, self.color_blank], '-8': [340, 140, self.color_blank], '-9': [348, 120, self.color_blank], '-10': [354, 100, self.color_blank],
-                        '-11': [359, 80, self.color_blank], '-12': [363, 60, self.color_blank], '-13': [366, 40, self.color_blank], '-14': [368, 20, self.color_zero]}
+                        '-11': [359, 80, self.color_blank], '-12': [363, 60, self.color_blank], '-13': [366, 40, self.color_blank], '-14': [368, 20, self.color_blank]}
         self.tape_memory = Tape()
         self.default_path = os.getcwd()
         self.templates_path = os.getcwd() + "/default_templates"
@@ -47,7 +47,7 @@ class UI_Window():
         self.menu_file = tk.Menu(tearoff=0)
         self.menu.add_cascade(label=i18n.t("file"), menu=self.menu_file)
         self.menu_file.add_command(label=i18n.t("open"), command= lambda: import_code(self))
-        self.menu_file.add_command(label=i18n.t("config_editor"), command= lambda: self.config_editor())
+        self.menu_file.add_command(label=i18n.t("config_editor"), command= self.config_editor)
         self.menu_file.add_command(label=i18n.t("exit"), command=self.root.destroy)
 
         self.menu_templates = tk.Menu(tearoff=0)
@@ -61,8 +61,8 @@ class UI_Window():
         
         self.menu_languages = tk.Menu(tearoff=0)
         self.menu.add_cascade(label=i18n.t("language"), menu=self.menu_languages)
-        self.menu_languages.add_command(label="English", command=lambda: change_language(self, "en"))
-        self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
+        self.menu_languages.add_command(label="English", command=lambda: self.change_language("en"))
+        self.menu_languages.add_command(label="Français", command=lambda: self.change_language("fr"))
         
         self.menu.add_command(label=i18n.t("help"), command= lambda: subprocess.Popen([os.getcwd() + "/documentation.pdf"], shell = True) )
         
@@ -290,7 +290,7 @@ class UI_Window():
         color_one = tk.Entry(top_level)
         color_one.pack()
         color_one.insert(0, self.color_one)
-        tk.Button(top_level, text=i18n.t("save"),command=lambda: change_colors(self, color_highlight.get(), color_blank.get(), color_zero.get(), color_one.get())).pack()
+        tk.Button(top_level, text=i18n.t("save"),command=lambda: self.change_colors(color_highlight.get(), color_blank.get(), color_zero.get(), color_one.get())).pack()
         tk.Button(top_level, text=i18n.t("cancel"),command= top_level.destroy).pack()
 
     def restart(self):

@@ -15,7 +15,7 @@ def initialisation(self):
     self.config_file = os.getcwd() + "/config.json"
     if not os.path.exists(self.config_file):
         with open(self.config_file, 'w') as fp:
-            fp.write('{"language": "en", "color_highlight": "lightblue", "color_blank" :"white", "color_zero": "coral", "color_one": "aquamarine"}')
+            fp.write('{"language": "en", "color_highlight": "lightblue", "color_blank": "white", "color_zero": "dark sea green", "color_one": "coral"}')
     i18n.load_path.append(os.getcwd() + "/translations")
     i18n.set("filename_format", "{locale}.{format}")
     with open(self.config_file, "r") as f:
