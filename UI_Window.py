@@ -209,7 +209,7 @@ class UI_Window():
         y -> int : position in ordinate for the circle
         rad -> int : radius of the circle
         color -> str : the color of the circles 
-        create the circles with the color for the state, blank 'b', gray '0', blue '1'
+        create the circles with the color for the state, blank 'b', zero_color '0', one_color '1'
         """
         canv.create_oval(x-rad, y-rad, x+rad, y+rad, width=0, fill=f'{color}')
         
