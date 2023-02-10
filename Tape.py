@@ -47,21 +47,6 @@ class Tape() :
         for element in self.tape[1:len(self.tape)] :
             x += ", " + str(element)
         return x
-        
-    def write(self, ui, index: int, value: str) :
-        """Writes the provided value in the provided cell at provided index
-
-        Args:
-            ui (class): Called to update the display
-            index (int): The position you're at
-            value (str): The value you write at the position
-        """
-        if index >= len(self.tape) :
-            self.tape.append(value)
-        else :
-            self.tape[index] = value
-            
-        self.update_display(ui)
 
     def move(self, ui, direction: str) :
         """Move on the tape in the provided directions
@@ -82,7 +67,24 @@ class Tape() :
             if len(self.tape[self.position:-1]) < 16 :
                 self.tape.append("b")
                 
-        self.update_display(ui)
+        if ui :
+            self.update_display(ui)
+
+    def write(self, ui, index: int, value: str) :
+        """Writes the provided value in the provided cell at provided index
+
+        Args:
+            ui (class): Called to update the display
+            index (int): The position you're at
+            value (str): The value you write at the position
+        """
+        if index >= len(self.tape) :
+            self.tape.append(value)
+        else :
+            self.tape[index] = value
+            
+        if ui :
+            self.update_display(ui)
 
     def update_display(self, ui):
         """
