@@ -270,38 +270,38 @@ class UI_Window():
     def config_editor(self):
         """Generate a window where you can edit colors used in the program and saved in config.json
         """
-        top_level = tk.Toplevel(self.root)
-        top_level.attributes('-topmost', 'true')
-        self.root.eval(f'tk::PlaceWindow {str(top_level)} center')
-        tk.Label(top_level, text=i18n.t("config_editor")).pack()
-        tk.Label(top_level, text=i18n.t("color_highlight")).pack()
-        color_highlight = tk.Entry(top_level)
+        self.config_window = tk.Toplevel(self.root)
+        self.config_window.attributes('-topmost', 'true')
+        self.root.eval(f'tk::PlaceWindow {str(self.config_window)} center')
+        tk.Label(self.config_window, text=i18n.t("config_editor")).pack()
+        tk.Label(self.config_window, text=i18n.t("color_highlight")).pack()
+        color_highlight = tk.Entry(self.config_window)
         color_highlight.pack()
         color_highlight.insert(0, self.color_highlight)
-        tk.Label(top_level, text=i18n.t("color_blank")).pack()
-        color_blank = tk.Entry(top_level)
+        tk.Label(self.config_window, text=i18n.t("color_blank")).pack()
+        color_blank = tk.Entry(self.config_window)
         color_blank.pack()
         color_blank.insert(0, self.color_blank)
-        tk.Label(top_level, text=i18n.t("color_zero")).pack()
-        color_zero = tk.Entry(top_level)
+        tk.Label(self.config_window, text=i18n.t("color_zero")).pack()
+        color_zero = tk.Entry(self.config_window)
         color_zero.pack()
         color_zero.insert(0, self.color_zero)
-        tk.Label(top_level, text=i18n.t("color_one")).pack()
-        color_one = tk.Entry(top_level)
+        tk.Label(self.config_window, text=i18n.t("color_one")).pack()
+        color_one = tk.Entry(self.config_window)
         color_one.pack()
         color_one.insert(0, self.color_one)
-        tk.Button(top_level, text=i18n.t("save"),command=lambda: self.change_colors(color_highlight.get(), color_blank.get(), color_zero.get(), color_one.get())).pack()
-        tk.Button(top_level, text=i18n.t("cancel"),command= top_level.destroy).pack()
+        tk.Button(self.config_window, text=i18n.t("save"),command=lambda: self.change_colors(color_highlight.get(), color_blank.get(), color_zero.get(), color_one.get())).pack()
+        tk.Button(self.config_window, text=i18n.t("cancel"),command= self.config_window.destroy).pack()
 
     def restart(self):
         """Prompts the user if they want to restart the program then restart it if the answer is yes
         """
-        restart_window = tk.Toplevel(self.root)
-        restart_window.attributes('-topmost', 'true')
-        self.root.eval(f'tk::PlaceWindow {str(restart_window)} center')
-        tk.Label(restart_window, text=i18n.t("restart_required")).pack()
-        tk.Button(restart_window, text=i18n.t("indeed"), command= lambda: os.execv(sys.executable, ['python'] + sys.argv)).pack()
-        tk.Button(restart_window, text=i18n.t("please_no"), command= restart_window.destroy).pack()
+        self.restart_window = tk.Toplevel(self.root)
+        self.restart_window.attributes('-topmost', 'true')
+        self.root.eval(f'tk::PlaceWindow {str(self.restart_window)} center')
+        tk.Label(self.restart_window, text=i18n.t("restart_required")).pack()
+        tk.Button(self.restart_window, text=i18n.t("indeed"), command= lambda: os.execv(sys.executable, ['python'] + sys.argv)).pack()
+        tk.Button(self.restart_window, text=i18n.t("please_no"), command= self.restart_window.destroy).pack()
 
 
 if __name__ ==  '__main__' :
