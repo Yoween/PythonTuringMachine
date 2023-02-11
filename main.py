@@ -6,11 +6,11 @@
 #==================================
 
 import tkinter as tk
-import os, i18n, webbrowser, subprocess
+import os, sys, i18n, webbrowser, subprocess, json
 from Tape import Tape
 from execute_code import import_code, execute_code, move, write, clear_tape
 from generate_template import generate_template
-from initialisation import initialisation, change_language
+from initialisation import initialisation
 
 
 class UI_Window():
@@ -33,19 +33,21 @@ class UI_Window():
         self.root.bind("<Control-o>", lambda y: import_code(self))
         self.instructions = {}
         self.execution = ()
-        self.circles = {'14': [40, 20, 'white'], '13': [42, 40, 'white'], '12': [45, 60, 'white'], '11': [49, 80, 'white'], '10': [54, 100, 'white'],
-                        '9': [60, 120, 'white'], '8': [68, 140, 'white'], '7': [78, 160, 'white'], '6': [90, 180, 'white'], '5': [104, 200, 'white'],
-                        '4': [118, 220, 'white'], '3': [136, 237, 'white'], '2': [156, 252, 'white'], '1': [178, 265, 'white'], '0': [204, 270, 'white'],
-                        '-1': [228, 265, 'white'], '-2': [250, 252, 'white'], '-3': [270, 237, 'white'], '-4':[288, 220, 'white'], '-5': [304, 200, 'white'],
-                        '-6': [318, 180, 'white'], '-7': [330, 160, 'white'], '-8': [340, 140, 'white'], '-9': [348, 120, 'white'], '-10': [354, 100, 'white'],
-                        '-11': [359, 80, 'white'], '-12': [363, 60, 'white'], '-13': [366, 40, 'white'], '-14': [368, 20, 'white']}
+        self.circles = {'14': [40, 20, self.color_blank], '13': [42, 40, self.color_blank], '12': [45, 60, self.color_blank], '11': [49, 80, self.color_blank], '10': [54, 100, self.color_blank],
+                        '9': [60, 120, self.color_blank], '8': [68, 140, self.color_blank], '7': [78, 160, self.color_blank], '6': [90, 180, self.color_blank], '5': [104, 200, self.color_blank],
+                        '4': [118, 220, self.color_blank], '3': [136, 237, self.color_blank], '2': [156, 252, self.color_blank], '1': [178, 265, self.color_blank], '0': [204, 270, self.color_blank],
+                        '-1': [228, 265, self.color_blank], '-2': [250, 252, self.color_blank], '-3': [270, 237, self.color_blank], '-4':[288, 220, self.color_blank], '-5': [304, 200, self.color_blank],
+                        '-6': [318, 180, self.color_blank], '-7': [330, 160, self.color_blank], '-8': [340, 140, self.color_blank], '-9': [348, 120, self.color_blank], '-10': [354, 100, self.color_blank],
+                        '-11': [359, 80, self.color_blank], '-12': [363, 60, self.color_blank], '-13': [366, 40, self.color_blank], '-14': [368, 20, self.color_blank]}
         self.tape_memory = Tape()
-        self.default_path = os.getcwd() + "/default_templates"
+        self.default_path = os.getcwd()
+        self.templates_path = os.getcwd() + "/default_templates"
 
         self.menu = tk.Menu(self.root)    
         self.menu_file = tk.Menu(tearoff=0)
         self.menu.add_cascade(label=i18n.t("file"), menu=self.menu_file)
         self.menu_file.add_command(label=i18n.t("open"), command= lambda: import_code(self))
+        self.menu_file.add_command(label=i18n.t("config_editor"), command= self.config_editor)
         self.menu_file.add_command(label=i18n.t("exit"), command=self.root.destroy)
 
         self.menu_templates = tk.Menu(tearoff=0)
@@ -53,14 +55,14 @@ class UI_Window():
         self.menu_templates.add_command(label=i18n.t("generate"), command= lambda: generate_template(self))
         self.menu_load_template = tk.Menu(tearoff=0)
         self.menu_templates.add_cascade(label=i18n.t("load"), menu=self.menu_load_template)
-        self.menu_load_template.add_command(label=i18n.t("invert_value"), command= lambda: import_code(self, f"{self.default_path}/invert_values.ptm"))
-        self.menu_load_template.add_command(label=i18n.t("add_one"), command= lambda: import_code(self, f"{self.default_path}/add_one_binary.ptm"))
-        self.menu_load_template.add_command(label=i18n.t("remove_one"), command= lambda: import_code(self, f"{self.default_path}/remove_one_binary.ptm"))
+        self.menu_load_template.add_command(label=i18n.t("invert_value"), command= lambda: import_code(self, f"{self.templates_path}/invert_values.ptm"))
+        self.menu_load_template.add_command(label=i18n.t("add_one"), command= lambda: import_code(self, f"{self.templates_path}/add_one_binary.ptm"))
+        self.menu_load_template.add_command(label=i18n.t("remove_one"), command= lambda: import_code(self, f"{self.templates_path}/remove_one_binary.ptm"))
         
         self.menu_languages = tk.Menu(tearoff=0)
         self.menu.add_cascade(label=i18n.t("language"), menu=self.menu_languages)
-        self.menu_languages.add_command(label="English", command=lambda: change_language(self, "en"))
-        self.menu_languages.add_command(label="Français", command=lambda: change_language(self, "fr"))
+        self.menu_languages.add_command(label="English", command=lambda: self.change_language("en"))
+        self.menu_languages.add_command(label="Français", command=lambda: self.change_language("fr"))
         
         self.menu.add_command(label=i18n.t("help"), command= lambda: subprocess.Popen([os.getcwd() + "/documentation.pdf"], shell = True) )
         
@@ -105,11 +107,11 @@ class UI_Window():
         slow_execution_var = tk.IntVar()
         self.button_slow = tk.Checkbutton(self.right_tab, text=i18n.t("slow"), variable= slow_execution_var, offvalue= 0, onvalue= 1)
         self.button_slow.grid(row=11, column=0, padx=10, sticky='nesw')
-        self.button_b = tk.Button(self.right_tab, text="b", command= lambda: write(self, self, "b"))
+        self.button_b = tk.Button(self.right_tab, text="b", bg=self.color_blank, command= lambda: write(self, self, "b"))
         self.button_b.grid(row=11, column=1, sticky='nesw')
-        self.button_0 = tk.Button(self.right_tab, text="0", bg=self.zero_color, command= lambda: write(self, self, "0"))
+        self.button_0 = tk.Button(self.right_tab, text="0", bg=self.color_zero, command= lambda: write(self, self, "0"))
         self.button_0.grid(row=11, column=2, sticky='nesw')
-        self.button_1 = tk.Button(self.right_tab, text="1", bg=self.one_color, command= lambda: write(self, self, "1"))
+        self.button_1 = tk.Button(self.right_tab, text="1", bg=self.color_one, command= lambda: write(self, self, "1"))
         self.button_1.grid(row=11, column=3, sticky='nesw')
         self.current_value = tk.Label(self.right_tab, text="")
         self.current_value.grid(row=11, column=4, padx=(10,0), sticky='nesw')
@@ -209,7 +211,7 @@ class UI_Window():
         y -> int : position in ordinate for the circle
         rad -> int : radius of the circle
         color -> str : the color of the circles 
-        create the circles with the color for the state, blank 'b', zero_color '0', one_color '1'
+        create the circles with the color for the state, color_blank 'b', color_zero '0', color_one '1'
         """
         canv.create_oval(x-rad, y-rad, x+rad, y+rad, width=0, fill=f'{color}')
         
@@ -232,6 +234,74 @@ class UI_Window():
 
         self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw", width=int(width/6))
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
+
+
+    def change_language(self, language:str):
+        """Sets the program's language to the selected one and prompts for a restart
+
+        Args:
+            language (str): simply the prefix of the language (ex: english is en)
+        """
+        with open(self.config_file, "w") as f:
+            self.config["language"] = language
+            json.dump(self.config, f)
+        self.restart()
+    
+    def change_colors(self, color_highlight: str, color_blank:str, color_zero:str, color_one:str):
+        """Sets custom colors for some elements
+
+        Args:
+            color_highlight (str): Changes the color of the instructions set highlighted during program execution
+            color_blank (str): Changes the color of the "b" value
+            color_zero (str): Changes the color of the "0" value
+            color_one (str): Changes the color of the "1" value
+        """
+        for argument in vars().values():
+            if argument == "":
+                return
+        with open(self.config_file, "w") as f:
+            self.config["color_highlight"] = color_highlight
+            self.config["color_blank"] = color_blank
+            self.config["color_zero"] = color_zero
+            self.config["color_one"] = color_one
+            json.dump(self.config, f)
+        self.restart()
+
+    def config_editor(self):
+        """Generate a window where you can edit colors used in the program and saved in config.json
+        """
+        top_level = tk.Toplevel(self.root)
+        top_level.attributes('-topmost', 'true')
+        self.root.eval(f'tk::PlaceWindow {str(top_level)} center')
+        tk.Label(top_level, text=i18n.t("config_editor")).pack()
+        tk.Label(top_level, text=i18n.t("color_highlight")).pack()
+        color_highlight = tk.Entry(top_level)
+        color_highlight.pack()
+        color_highlight.insert(0, self.color_highlight)
+        tk.Label(top_level, text=i18n.t("color_blank")).pack()
+        color_blank = tk.Entry(top_level)
+        color_blank.pack()
+        color_blank.insert(0, self.color_blank)
+        tk.Label(top_level, text=i18n.t("color_zero")).pack()
+        color_zero = tk.Entry(top_level)
+        color_zero.pack()
+        color_zero.insert(0, self.color_zero)
+        tk.Label(top_level, text=i18n.t("color_one")).pack()
+        color_one = tk.Entry(top_level)
+        color_one.pack()
+        color_one.insert(0, self.color_one)
+        tk.Button(top_level, text=i18n.t("save"),command=lambda: self.change_colors(color_highlight.get(), color_blank.get(), color_zero.get(), color_one.get())).pack()
+        tk.Button(top_level, text=i18n.t("cancel"),command= top_level.destroy).pack()
+
+    def restart(self):
+        """Prompts the user if they want to restart the program then restart it if the answer is yes
+        """
+        restart_window = tk.Toplevel(self.root)
+        restart_window.attributes('-topmost', 'true')
+        self.root.eval(f'tk::PlaceWindow {str(restart_window)} center')
+        tk.Label(restart_window, text=i18n.t("restart_required")).pack()
+        tk.Button(restart_window, text=i18n.t("indeed"), command= lambda: os.execv(sys.executable, ['python'] + sys.argv)).pack()
+        tk.Button(restart_window, text=i18n.t("please_no"), command= restart_window.destroy).pack()
 
 
 if __name__ ==  '__main__' :

@@ -93,11 +93,11 @@ class Tape() :
         """
         for key in ui.circles.keys() :
             if self.tape[self.position - int(key)] == 'b':
-                ui.circles[key][2] = 'white'
+                ui.circles[key][2] = ui.color_blank
             if self.tape[self.position - int(key)] == '0':
-                ui.circles[key][2] = ui.zero_color
+                ui.circles[key][2] = ui.color_zero
             if self.tape[self.position - int(key)] == '1':
-                ui.circles[key][2] = ui.one_color
+                ui.circles[key][2] = ui.color_one
         ui.canvas2.destroy()
         ui.canvas2 = tk.Canvas(ui.right_tab, height=310,  bg='AntiqueWhite2')
         ui.canvas2.grid(row=2, column=0, columnspan=10, sticky='nesw')
