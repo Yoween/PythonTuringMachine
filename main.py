@@ -300,7 +300,8 @@ class UI_Window():
         restart_window.attributes('-topmost', 'true')
         self.root.eval(f'tk::PlaceWindow {str(restart_window)} center')
         tk.Label(restart_window, text=i18n.t("restart_required")).pack()
-        tk.Button(restart_window, text=i18n.t("indeed"), command= lambda: os.execv(sys.executable, ['python'] + sys.argv)).pack()
+        self.ok_button = tk.Button(restart_window, text=i18n.t("indeed"), command= lambda: os.execv(sys.executable, ['python'] + sys.argv))
+        self.ok_button.pack()
         tk.Button(restart_window, text=i18n.t("please_no"), command= restart_window.destroy).pack()
 
 

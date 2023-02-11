@@ -4,13 +4,17 @@ from main import UI_Window
 from generate_template import generate_template, template_creator
 import tkinter, os, time
 import tkinter as tk
+test = UI_Window()
 
 def test_generate_template():
     current_dir = os.getcwd()
     test_file = current_dir + "/test_program.ptm"
+    try:
+        os.remove(test_file)
+    except:
+        pass
     open(test_file, "x") #create temp file for test
     
-    test = UI_Window()
     generate_template(test)
     assert type(test.generation_window) == tkinter.Toplevel
     assert type(test.go_button) == tkinter.Button
@@ -21,23 +25,18 @@ def test_generate_template():
 
     with open(test_file, "r") as file:
         assert len(file.read()) == 108 #checks if good length: 2 * 3 * (5 + 4 + 8 + 1): length * 3 * (number of instructions + number of separators + number of whitespaces + 1 return char)
-        
-    os.remove(current_dir + "/test_program.ptm")
-    
-    time.sleep(2)
 
 def test_template_creator():
     current_dir = os.getcwd()
     test_file = current_dir + "/test_program.ptm"
+    try:
+        os.remove(test_file)
+    except:
+        pass
     open(test_file, "x") #create temp file for test
     
-    test = UI_Window()
     test.file = open(test_file, "w")
     template_creator(test, 3, 2)
     
     with open(test_file, "r") as file:
         assert len(file.read()) == 162 #checks if good length: 3 * 3 * (5 + 4 + 8 + 1): length * 3 * (number of instructions + number of separators + number of whitespaces + 1 return char)
-        
-    os.remove(current_dir + "/test_program.ptm")
-    
-    time.sleep(2)
