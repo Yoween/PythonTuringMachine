@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from UI_Window import UI_Window
+from main import UI_Window
 import tkinter as tk
 import tkinter as tkinter
 
