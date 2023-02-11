@@ -1,7 +1,7 @@
 #!/usr/bin/env python3os
 
 from main import UI_Window
-import tkinter, time, psutil, os
+import tkinter, os, json
 test = UI_Window()
 
 def test_execution_tab():
@@ -55,11 +55,42 @@ def test_new_state():
     assert type(test.__dict__[f"label_new_state2_0"]) == tkinter.Label
     assert type(test.__dict__[f"label_new_state2_1"]) == tkinter.Label
 
+def test_change_language():
+    config = ""
+    config_file = os.getcwd() + "/config.json"
+    with open(config_file, "r") as f:
+        config = json.load(f) #backs up values
+    value = ""
+    if config["language"] == "fr":
+        value = "en"
+    elif config["language"] == "en":
+        value = "fr"
+    test.change_language(value)
+    with open(config_file, "r") as f:
+        config_new = json.load(f) #checks if worked
+        assert config_new["language"] != config["language"]
 
-# def test_restart():
-#     test = UI_Window()
-#     test.restart()
-#     time.sleep(1)
-#     p = psutil.Process(os.getpid())
-#     print(time.time()-p.create_time())
-#     test.ok_button.invoke()
+def test_change_colors():
+    config = ""
+    config_file = os.getcwd() + "/config.json"
+    with open(config_file, "r") as f:
+        config = json.load(f) #backs up values
+    test.change_colors("red", "blue", "green", "white") #changes values
+    with open(config_file, "r") as f:
+        config_new = json.load(f)
+    for i in ["red", "blue", "green", "white"]:
+        assert i in config_new.values()
+    #restore values
+    test.change_colors(config["color_highlight"], config["color_blank"], config["color_zero"], config["color_one"])
+    with open(config_file, "r") as f:
+        config_check = json.load(f) #backs up values
+    for i in config_check.values():
+        assert i in config.values() #checks if correctly restored
+
+def test_config_editor():
+    test.config_editor()
+    assert type(test.config_window) is tkinter.Toplevel
+
+def test_restart():
+    test.restart()
+    assert type(test.restart_window) is tkinter.Toplevel
