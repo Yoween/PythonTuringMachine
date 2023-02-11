@@ -18,10 +18,10 @@ def test_read():
 def test_read_all():
     a = Tape()
     ui = False
-    assert a.read_all() == ["b"] * 51
-    for index in len(a.tape) :
+    assert a.read_all() == "b, " * 50 + "b"
+    for index in range(len(a.tape)) :
         a.write(ui, index, '1')
-    assert a.read_all() == ["1"] * 51
+    assert a.read_all() == "1, " * 50 + "1"
 
 def test_move():
     ui = False
