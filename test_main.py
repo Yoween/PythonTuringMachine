@@ -45,3 +45,18 @@ def test_new_state():
     assert type(test.__dict__[f"label_new_state2_b"]) == tkinter.Label
     assert type(test.__dict__[f"label_new_state2_0"]) == tkinter.Label
     assert type(test.__dict__[f"label_new_state2_1"]) == tkinter.Label
+
+def test___init__():
+    test = UI_Window()
+    assert test.root.winfo_width() == 800
+    assert test.root.winfo_height() == 380
+    assert test.menu.winfo_exists() == 1
+
+def test_scroll_bar():
+    test = UI_Window()
+    assert type(test.instructions) == dict
+    assert type(test.execution) == tuple
+    assert type(test.circles) == dict
+    assert test.canvas.winfo_exists() == 1 and type(test.canvas) == tkinter.Canvas
+    assert test.scrollbar.winfo_exists() == 1 and type(test.scrollbar) == tkinter.Scrollbar
+    assert test.scrollable_frame.winfo_exists() == 1 and type(test.scrollable_frame) == tkinter.Frame
