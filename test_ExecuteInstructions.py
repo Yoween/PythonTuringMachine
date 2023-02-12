@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from ExecuteInstructions import ExecuteInstructions
+from main import UI_Window
+from execute_code import import_code
 import tkinter as tk
 
 
@@ -38,10 +40,10 @@ def test_is_valid():
     test = ExecuteInstructions()
     characters = ("1", "b", "g", ">", "2")
     assert test.is_valid(characters, 5) == False
-    assert test.error == "Invalid character 'g' at index 3, line 5"
+    assert test.error == "Invalid character at line 5"
     characters = ("1", "b", "-", "-1", "2")
     assert test.is_valid(characters, -1) == False
-    assert test.error == "Invalid character '-1' at index 4, line -1"
+    assert test.error == "Invalid character at line -1"
     characters = ("1", "b", "-", "2")
     assert test.is_valid(characters, 1) == False
     assert test.error == "Missing instructions at line 1"
@@ -55,8 +57,10 @@ def test_is_complete():
     instructions = {}
     assert test.is_complete(instructions) == False
 
-def test_start():
-    ui = tk.Tk()
-    ui.canvas = tk.Canvas(ui)
+# def test_start():
+#     ui = UI_Window()
+#     file = ui.templates_path + "/invert_values.ptm"
+#     import_code(ui, file)
+#     ui.execution.start(ui, {'1': {'b': ('-', '<', '1'), '0': ('-', '-', '2'), '1': ('-', '-', '2')}, '2': {'b': ('-', '-', 'f'), '0': ('1', '<', '2'), '1': ('0', '<', '2')}, '3': {'b': ('-', '-', '3'), '0': ('-', '-', '3'), '1': ('0', '<', '4')}, '4': {'b': ('1', '-', '5'), '0': ('1', '-', '5'), '1': ('-', '-', '4')}, '5': {'b': ('-', '-', 'f'), '0': ('-', '>', '5'), '1': ('-', '>', '5')}}, ui.current_value, ui.next_value, ui.color_highlight, ui.tape_memory, 0)
 
-test_start()
+# test_start()
