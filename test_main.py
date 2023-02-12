@@ -4,6 +4,15 @@ from main import UI_Window
 import tkinter, os, json
 test = UI_Window()
 
+def test___init__():
+    assert test.root.winfo_width() == 800
+    assert test.root.winfo_height() == 380
+    assert test.menu.winfo_exists() == 1
+    assert test.menu_file.winfo_exists() == 1
+    assert test.menu_templates.winfo_exists() == 1
+    assert test.menu_load_template.winfo_exists() == 1
+    assert test.menu_languages.winfo_exists() == 1
+
 def test_execution_tab():
     test.execution_tab()
     for i in test.circles.values():
@@ -56,7 +65,6 @@ def test_new_state():
     assert type(test.__dict__[f"label_new_state2_1"]) == tkinter.Label
 
 def test_scroll_bar():
-    test = UI_Window()
     assert type(test.instructions) == dict
     assert type(test.execution) == tuple
     assert type(test.circles) == dict
@@ -103,13 +111,3 @@ def test_config_editor():
 def test_restart():
     test.restart()
     assert type(test.restart_window) is tkinter.Toplevel
-
-def test___init__():
-    test = UI_Window()
-    assert test.root.winfo_width() == 800
-    assert test.root.winfo_height() == 380
-    assert test.menu.winfo_exists() == 1
-    assert test.menu_file.winfo_exists() == 1
-    assert test.menu_templates.winfo_exists() == 1
-    assert test.menu_load_template.winfo_exists() == 1
-    assert test.menu_languages.winfo_exists() == 1

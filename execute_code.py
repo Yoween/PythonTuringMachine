@@ -54,8 +54,6 @@ def move(self, ui, direction: str):
     Args:
         direction (str): '<' or '>' for the direction.
     """
-    if self.execution == ():
-        return
     self.tape_memory.move(ui, direction)
     tape_index = self.tape_memory.position
     tape_index_value = self.tape_memory.read(tape_index)
@@ -67,8 +65,6 @@ def write(self, ui, value: str):
     Args:
         value (str): 'b', '0' or '1' for the values to write.
     """
-    if self.execution == ():
-        return
     self.tape_memory.write(ui, self.tape_memory.position, value)
     tape_index = self.tape_memory.position
     tape_index_value = self.tape_memory.read(tape_index)

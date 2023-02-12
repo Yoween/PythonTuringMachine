@@ -1,1 +1,1 @@
-python3 UI_Window.py
+python3 main.py
