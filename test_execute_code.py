@@ -6,14 +6,15 @@ from Tape import Tape
 import tkinter, time
 import tkinter as tk
 
-test = UI_Window()
-
 def test_import_code():
-    file = test.templates_path + "/invert_values.ptm"
-    import_code(test, file)
-    assert test.left_tab.winfo_exists() == True
-    assert len(test.instructions) == 2 # length of the instructions
+    test1 = UI_Window()
+    file = test1.templates_path + "/invert_values.ptm"
+    import_code(test1, file)
+    assert test1.left_tab.winfo_exists() == True
+    print(len(test1.instructions))
+    assert len(test1.instructions) == 6 # length of the instructions
 
+test_import_code()
 def test_execute_code():
     test2 = UI_Window()
     test2.tape_memory = Tape()
