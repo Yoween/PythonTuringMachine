@@ -12,7 +12,6 @@ import tkinter as tk
 
 
 class ExecuteInstructions():
-    allowed_characters = ("b", ">", "<", "f", "-")
     instructions = {}
     """
     A class that takes instructions, format them in a list where 
@@ -49,13 +48,14 @@ class ExecuteInstructions():
             bool: True is characters are valid otherwise false
         """
         values_read = ("b", "0", "1")
-        values_move = (">", "<")
+        values_write = ("-", "b", "0", "1")
+        values_move = ("-", ">", "<")
         if len(characters) < 5:
-                self.error = f"Missing instructions at line {line}"
-                logging.basicConfig(filename="latest.log", level=logging.INFO)
-                logging.error(self.error)
-                return False
-        if (characters[0].isdigit() and int(characters[0]) > 0) and (characters[1] in values_read) and (characters[2] in values_read) and (characters[3] in values_move) and (characters[4].isdigit() and int(characters[4]) > 0):
+            self.error = f"Missing instructions at line {line}"
+            logging.basicConfig(filename="latest.log", level=logging.INFO)
+            logging.error(self.error)
+            return False
+        if (characters[0].isdigit() and int(characters[0]) > 0) and (characters[1] in values_read) and (characters[2] in values_write) and (characters[3] in values_move) and ((characters[4].isdigit() and int(characters[4]) > 0) or characters[4] == "f"):
             pass
         else:
             self.error = f"Invalid character at line {line}"
