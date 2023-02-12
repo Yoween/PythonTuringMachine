@@ -5,7 +5,6 @@ import tkinter, os, json
 test = UI_Window()
 
 def test___init__():
-    test = UI_Window()
     assert test.root.winfo_width() == 800
     assert test.root.winfo_height() == 380
     assert test.menu.winfo_exists() == 1

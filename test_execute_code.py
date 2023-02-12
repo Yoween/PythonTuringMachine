@@ -15,16 +15,13 @@ def test_import_code():
     assert len(test.instructions) == 2 # length of the instructions
 
 def test_execute_code():
-    test.tape_memory = Tape()
+    test2 = UI_Window()
+    test2.tape_memory = Tape()
     for i in range(6):
-        write(test, test, str(i % 2))
-        move(test, test, ">")
-    print(test.tape_memory.tape)
-    file = test.templates_path + "/invert_values.ptm"
-    import_code(test, file)
-    execute_code(test, test, test.instructions, 0)
-    assert test.instructions != {} #checks if instructions
-    time.sleep()
-    test.root.destroy()
-    
-test_execute_code()
+        write(test2, test2, str(i % 2))
+        move(test2, test2, ">")
+    file = test2.templates_path + "/invert_values.ptm"
+    import_code(test2, file)
+    execute_code(test2, test2, test2.instructions, 0)
+    assert test2.instructions != {} #checks if instructions
+    assert test2.tape_memory.tape == ['b']*25+['1', '0', '1', '0', '1', '0']+['b']*20
