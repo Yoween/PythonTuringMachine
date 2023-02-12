@@ -103,3 +103,13 @@ def test_config_editor():
 def test_restart():
     test.restart()
     assert type(test.restart_window) is tkinter.Toplevel
+
+def test___init__():
+    test = UI_Window()
+    assert test.root.winfo_width() == 800
+    assert test.root.winfo_height() == 380
+    assert test.menu.winfo_exists() == 1
+    assert test.menu_file.winfo_exists() == 1
+    assert test.menu_templates.winfo_exists() == 1
+    assert test.menu_load_template.winfo_exists() == 1
+    assert test.menu_languages.winfo_exists() == 1
