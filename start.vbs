@@ -1,1 +1,1 @@
-CreateObject("Wscript.Shell").Run "python UI_Window.py", 0, True
+CreateObject("Wscript.Shell").Run "python main.py", 0, True
