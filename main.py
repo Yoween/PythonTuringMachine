@@ -166,7 +166,6 @@ class UI_Window():
             del self.__dict__[f"label_new_state{x}_0"]
             del self.__dict__[f"label_new_state{x}_1"]
             x += 1
-
         self.scrollable_frame.update()
 
 

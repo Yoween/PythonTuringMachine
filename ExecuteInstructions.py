@@ -68,18 +68,22 @@ class ExecuteInstructions():
         instructions -> dict: dictionnary with all instructions
         verify that the dictionnary is complete 
         """
+        if len(instructions) < 1:
+            return False
         for i in range(1, len(instructions) + 1):
             if len(instructions[str(i)]) != 3:
                 self.error = f"Missing instructions line"
                 logging.basicConfig(filename="latest.log", level=logging.INFO)
                 logging.error(self.error)
                 return False
+        return True
 
 
-    def start(self, ui, instructions:dict, current_value_label, next_value_label, background, tape_memory = Tape(), delay = 0):
+    def start(self, ui: object, instructions:dict, current_value_label, next_value_label, background, tape_memory = Tape(), delay = 0):
         """Executes the program when called. Used instead of '__init__' so we can decide when to start it. The core of the program, which executes instructions as a Turing machine would do.
 
         Args:
+            ui (object: tkinter interface)
             instructions (dict): Contains every instructions of the program loaded.
             tape_memory (class): The tape where data are written. Here it isn't optionnal but written as so for my text editor to understand what objects are used
             delay (int, optional): The delay used for the slowed down execution. Defaults to 0.
@@ -115,15 +119,18 @@ class ExecuteInstructions():
                 if previous_state != self.current_state:
                     iterations -= 1
 
-            ui.__dict__[f"label_state{self.current_state}"].config(bg=background)
-            ui.__dict__[f"label_read{self.current_state}_{tape_index_value}"].config(bg=background)
-            ui.__dict__[f"label_write{self.current_state}_{tape_index_value}"].config(bg=background)
-            ui.__dict__[f"label_move{self.current_state}_{tape_index_value}"].config(bg=background)
-            ui.__dict__[f"label_new_state{self.current_state}_{tape_index_value}"].config(bg=background)
+            if ui:
+                # test if ui exist for pytest
+                # change the color of the interface
+                ui.__dict__[f"label_state{self.current_state}"].config(bg=background)
+                ui.__dict__[f"label_read{self.current_state}_{tape_index_value}"].config(bg=background)
+                ui.__dict__[f"label_write{self.current_state}_{tape_index_value}"].config(bg=background)
+                ui.__dict__[f"label_move{self.current_state}_{tape_index_value}"].config(bg=background)
+                ui.__dict__[f"label_new_state{self.current_state}_{tape_index_value}"].config(bg=background)
 
-            ui.canvas2.update()
-            ui.circles.update()
-            sleep(delay)
-            for key in ui.__dict__.keys():
-                if key.startswith("label"):
-                    ui.__dict__[key].config(bg="grey94")
+                ui.canvas2.update()
+                ui.circles.update()
+                sleep(delay)
+                for key in ui.__dict__.keys():
+                    if key.startswith("label"):
+                        ui.__dict__[key].config(bg="grey94")
