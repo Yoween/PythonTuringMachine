@@ -17,6 +17,18 @@ Python 3.6 or higher
 
 `logging2` library for error logging
 
+#### Windows :
+
+```bash
+pip install python-i18n[YAML] logging2
+```
+
+#### Linux :
+
+```bash
+pip3 install python-i18n[YAML] logging2
+```
+
 ## Note :
 
 The interpreter supports the standard Turing Machine operations, such as reading and writing to a tape, moving the tape head, and transitioning between states. It provides a graphical user interface for visualizing the machine's execution. The interpreter does not have a command-line interface.
